@@ -1,0 +1,2223 @@
+Avaya-SparkIPTelephone-MIB 
+--DEFAULT get-function-async SnmpManagerGet
+--DEFAULT set-function-async null_set_async
+--DEFAULT next-function-async SnmpManagerNext
+--DEFAULT test-function-async null_test_async 
+DEFINITIONS ::= BEGIN     
+IMPORTS
+        	enterprises, OBJECT-TYPE, MODULE-IDENTITY, Integer32, IpAddress
+                FROM SNMPv2-SMI 
+   		DisplayString 
+		FROM RFC1213-MIB ;
+
+avayaSparkMIB MODULE-IDENTITY
+	     LAST-UPDATED     "1010192000Z"
+    	     ORGANIZATION     "avaya"
+             CONTACT-INFO     "Avaya Customer Services
+			       Avaya, Inc.
+			       211 Mt. Airy Road
+			       Basking Ridge, NJ 07920 USA
+
+    	                        WWW: www.avaya.com
+
+        	                  Tel: +1 908 953 6000"
+	      DESCRIPTION     "MIB Module for 96xx SIP IP Telephones as of Release 2.6
+		in accordance with Spark IP RFS 122564, Issue 2.6 and 
+	        Spark Config Options RFS 121779, Issue 2.6.
+		Copyright 2010 by Avaya Inc.  All rights reserved."
+	            ::= { ipEndpointMIBs 4 }
+
+avaya                   OBJECT IDENTIFIER ::= { enterprises 6889 }
+products                OBJECT IDENTIFIER ::= { avaya 1 }
+avayaMibs               OBJECT IDENTIFIER ::= { avaya 2 }
+avayaipEndpointProd     OBJECT IDENTIFIER ::= { products 69 }
+ipEndpointMIBs          OBJECT IDENTIFIER ::= { avayaMibs 69 }
+
+
+endptID         OBJECT IDENTIFIER ::= { avayaSparkMIB 1 }
+endptAGCHAND    OBJECT-TYPE
+                    SYNTAX      INTEGER  
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Handset AGC status. This variable returns 1  
+                        if the endpoint's handset Automatic Gain Control 
+                        capability is currently enabled, else 0."
+                    ::= { endptID 1 }
+endptAGCHEAD    OBJECT-TYPE
+                    SYNTAX      INTEGER  
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Headset AGC status. This variable returns 1 
+                        if the endpoint's headset Automatic Gain Control 
+                        capability is currently enabled, else 0."
+                    ::= { endptID 2 }
+endptAGCSPKR    OBJECT-TYPE
+                    SYNTAX      INTEGER  
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Speakerphone AGC status. This variable returns 
+                        1 if the endpoint's speakerphone Automatic Gain Control 
+                        capability is currently enabled, else 0."
+                    ::= { endptID 3 }
+endptAPPINUSE   OBJECT-TYPE 
+                    SYNTAX      DisplayString 
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Application file name.  This variable returns
+                        the name of the application file in the endpoint."
+                    ::= { endptID 4 }
+endptAPPNAME    OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Application file ID. This variable returns 
+                        a string specifying the system-specific application 
+                        file that should be used for telephone operation."
+                    ::= { endptID 5 }
+endptBAKLIGHTOFF  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Backlight idle timer setting. This variable 
+			returns the number of minutes of idle time, after which 
+			the phone backlight is turned off. Range is 0-999, with  
+			a default of 120.  Used in phones with backlit displays."                        
+                    ::= { endptID 6 }
+endptBOOTNAME   OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Boot code file ID. This variable returns a  
+                        string specifying the boot code 
+                        file used to initiate telephone operation."
+                    ::= { endptID 7 }
+endptBRIGHTNESS  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Display Brightness setting. This variable  
+			returns the value of the display brightness setting  
+			in memory. Range is 0-5, with 4 the default."
+                    ::= { endptID 8 }
+endptCONFIGSRVR  OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Configuration Server. This variable returns  
+			a string specifying the IP address or URL of the  
+                        configuration server (e.g PPM) that should be used 
+                        for endpoint configuration (only set if not identical 
+                        to SIP Proxy server)."
+                    ::= { endptID 9 }
+endptCONFIGSRVRUSED  OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Configuration server IP address.  This 
+			variable returns a 4-octet IP address for the  
+			configuration server used during initialization 
+                        (all zeros if no specific server used)."
+                    ::= { endptID 10 }
+endptCNAPORT    OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Chatter server port. This variable returns the 
+			Chatter server registration transport-layer port number 
+			(from 0 to 65535; default is 8888)."
+                    ::= { endptID 11 }
+endptCNASRVR    OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "CNA server addresses. This variable returns zero 
+			or more Chatter server addresses for network analysis, in 
+			dotted decimal or DNS format."
+                    ::= { endptID 12 }
+endptCODECR     OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Receive codec(s). This variable returns the 
+                        designation(s) of the Receive codec(s) currently 
+                        in use."
+                    ::= { endptID 13 }
+endptCODECT     OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Transmit codec(s). This variable returns the 
+                        designation(s) of the Transmit codec(s) currently 
+                        in use."
+                    ::= { endptID 14 }
+endptCONTRAST    OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Display Contrast setting. This variable returns
+			the value of the display contrast setting in memory.  
+			Range is 0-15, with 8 the default."
+                    ::= { endptID 15 }
+endptCOUNTRY    OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Country specific network progress tone setting.   
+                        This variable returns the designation of the country  
+                        for which the user hears dial tone, ringing tone, busy 
+                        tone, congestion tone, reorder tone and intercept tone."
+                    ::= { endptID 16 }
+endptDATEFORMAT  OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Date format string. This variable returns a 
+                        string specifying the date separator and the position 
+                        of day (%d), month (%m) and year (%y for 2-digit 
+                        presentation, %Y for 4-digit presentation). 
+                        Default is '%m/%d/%y' for date in mm/dd/yy format."
+                    ::= { endptID 17 }
+endptDHCPLEASEREBIND     OBJECT-TYPE
+                    SYNTAX      Integer32
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Rebind time of IPADD lease. This 
+                        variable returns an unsigned integer specifying 
+                        the length of time at which to rebind the IPADD 
+			lease, in seconds as received by DHCP option 59."
+                    ::= { endptID 18 }
+endptDHCPLEASERENEW     OBJECT-TYPE
+                    SYNTAX      Integer32
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Renewal time of IPADD lease. This 
+                        variable returns an unsigned integer specifying 
+                        the length of time at which to renew the IPADD 
+			lease, in seconds as received by DHCP option 58."
+                    ::= { endptID 19 }
+endptDHCPLEASETIME      OBJECT-TYPE
+                    SYNTAX      Integer32
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Duration of IPADD lease. This variable 
+                        returns an unsigned integer specifying the length 
+                        of time of the IPADD lease, in seconds as received 
+                        by DHCP option 51."
+                    ::= { endptID 20 }
+endptDNSSRVR    OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "List of DNS server addresses.  This variable 
+			returns a sequence of IP addresses, in dotted-decimal 
+			format and separated by commas, of DNS servers 
+			available for use."
+                    ::= { endptID 21 }
+endptDOMAIN     OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Domain setting. This varialbe returns a string
+                        to be appended to configuration parameters, when they 
+                        are resolved into IP addresses."
+                    ::= { endptID 22 }
+endptDOT1X      OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "802.1X mode. This variable returns 
+			0 if the endpoint supports unicast Supplicant 
+                        operation only, with PAE multicast pass-through 
+                        without proxy Logoff, 1 if the same as 0 but with 
+                        proxy Logoff, and 2 if both unicast or Multicast
+                        Supplicant operation, without PAE multicast 
+                        pass-through, is supported.  The default is 0." 
+                    ::= { endptID 23 }
+endptDSCPAUD    OBJECT-TYPE
+                    SYNTAX      INTEGER  
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "DSCP for audio. This variable specifies the
+                        Differentiated Services Code Point for audio 
+                        currently in use (between 0 and 63 inclusive)."
+                    ::= { endptID 24 }
+endptDSCPBBE    OBJECT-TYPE
+                    SYNTAX      INTEGER 
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "DSCP BBE priority value. This variable is   
+			a placeholder for future use. It currently 
+                        returns '-1'."
+                    ::= { endptID 25 }
+endptDSCPSIG    OBJECT-TYPE
+                    SYNTAX      INTEGER  
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION " DSCP for signaling. This variable specifies 
+                        the Differentiated Services Code Point for signaling 
+                        currently in use (between 0 and 63 inclusive)."
+                    ::= { endptID 26 }
+endptDSPVERSION  OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "DSP Version.  This variable returns a string 
+			of up to 10 characters, that identifies the version of 
+			the DSP firmware in the endpoint."
+                    ::= { endptID 27 }
+endptFEIPADD    OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Audio endpoint address(es). This variable 
+                        returns a string specifying the address(es) of the  
+                        far-end audio endpoint(s) currently in use."
+                    ::= { endptID 28 }
+endptFEPORT     OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Audio endpoint port number(s). This variable 
+                        returns the far-end endpoint's transport layer port  
+                        number(s) for audio, currently in use."
+                    ::= { endptID 29 }
+endptFONT       OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Font file identifier. This variable returns a 
+			text string with the name of the font file stored 
+                        in the endpoint, if any."
+                    ::= { endptID 30 }
+endptGROUP      OBJECT-TYPE
+                    SYNTAX      INTEGER  
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Group identifier. This variable returns the 
+                        integer corresponding to the current group identifier."
+                    ::= { endptID 31 }
+endptHTTPDIR    OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "HTTP server directory.  This variable returns 
+			the path used in formation of the URI for HTTP GET 
+                        operations to access HTTP initialization server."
+                    ::= { endptID 32 }
+endptHTTPPORT    OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "HTTP server port.  This variable returns the 
+			port used for HTTP GET operations to access 
+                        HTTP initialization server."
+                    ::= { endptID 33 }
+endptHTTPSRVR   OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "HTTP server IP addresses.  This variable 
+			returns a comma-separated list of HTTP server IP 
+			addresses available  for use during initialization, 
+                        in dotted-decimal or DNS format."
+                    ::= { endptID 34 }
+endptHTTPUSED   OBJECT-TYPE
+                    SYNTAX      IpAddress
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "HTTP initialization server IP address. This 
+			variable returns a 4-octet IP address for the HTTP  
+			server used, if any, during initialization (all zeros  
+			if no server successfully used during initialization)."
+                    ::= { endptID 35 }
+endptICMPDU     OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Current value for ICMP Destination message 
+                        handling. This variable returns 0 if the endpoint does 
+                        not transmit ICMP Destination Unreachable messages; 
+                        1 if such messages are transmitted only in response to 
+                        datagrams that designate closed UDP ports or if the 
+                        designated transport protocol is not supported, and 
+                        2 if such messages are sent only in response to 
+                        datagrams that designate closed UDP or TCP ports or 
+                        if the designated transport protocol is not supported.  
+                        The default is 1." 
+                    ::= { endptID 36 }
+endptICMPRED    OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Current value for ICMP Redirect message 
+                        handling. This variable returns 1 if received Redirect 
+                        messages are handled as specified in RFC 1122, Sections
+                        3.2.2.2 and 3.3.1.2, else 0. The default is 0."
+                    ::= { endptID 37 }
+endptIPADD      OBJECT-TYPE
+                    SYNTAX      IpAddress
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Endpoint IP address. This variable returns a 
+			4-octet string specifying the endpoint's current 
+                        IP address."
+                    ::= { endptID 38 }
+endptJMSEC      OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Jitter buffer size(s). This variable returns 
+                        the number(s) of milliseconds of delay added to 
+                        compensate for network jitter, from 0-300 milliseconds, 
+                        for each active audio connection. The default is 10."                        
+                    ::= { endptID 39 }
+endptL2Q        OBJECT-TYPE
+                    SYNTAX      INTEGER  
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "802.1Q framing flag. This variable returns 0 
+			if the Layer 2 802.1Q framing parameter is set to 
+			'auto', 1 if it is set to on/enabled, else 2 for
+                        off/disabled."
+                    ::= { endptID 40 }
+endptL2QAUD     OBJECT-TYPE
+                    SYNTAX      INTEGER  
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Audio priority. This variable returns an 
+                        integer between 0 and 7 inclusive specifying the 
+                        current Layer 2 802.1Q audio priority value."
+                    ::= { endptID 41 }
+endptL2QSIG     OBJECT-TYPE
+                    SYNTAX      INTEGER  
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Signaling priority. This variable returns 
+                        an integer between 0 and 7 inclusive specifying the 
+                        current Layer 2 802.1Q signaling priority value."
+                    ::= { endptID 42 }
+endptL2QSTAT    OBJECT-TYPE
+                    SYNTAX      INTEGER  
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "802.1Q tagging flag. This variable returns 0  
+                        if the Layer 2 802.1Q tagging parameter is currently
+                        OFF, else 1." 
+                    ::= { endptID 43 }
+endptL2QVLAN    OBJECT-TYPE
+                    SYNTAX      INTEGER 
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Administered Telephone VLAN Identifier. This  
+                        variable returns an integer between 0 and 4094  
+                        inclusive specifying the administered Layer 2  
+                        802.1Q VLAN Identifier value."
+                    ::= { endptID 44 }
+endptL2QVLANINIT  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Stored Telephone VLAN Identifier, This 
+                        variable returns an integer between 0 and 4094   
+                        inclusive specifying the stored Layer 2 802.1Q   
+                        VLAN Identifier  value to accommodate requirement  
+                        for VLAN Identifier survival."
+                    ::= { endptID 45 }
+endptL2QVLANINUSE OBJECT-TYPE
+                    SYNTAX      INTEGER 
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Telephone VLAN Identifier in use. This  
+                        variable returns an integer between 0 and 4094   
+                        inclusive specifying the current Layer 2  
+                        802.1Q VLAN Identifier value."
+                    ::= { endptID 46 }
+endptLANGFILES  OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Language file list. This variable returns  
+			a  string specifying the language files stored 
+			in the endpoint,if any, separated by commas."
+                    ::= { endptID 47 }
+endptLANGINUSE  OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Language file in use. This variable returns
+                        the name of the language currently used or the string 
+                        'built-in', if the built-in language is used."
+                    ::= { endptID 48 }
+endptLOGSRVR    OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Event Log server address.  This variable 
+			returns at most one IP address, in dotted-decimal 
+			or DNS format, of the server to be used for event 
+			logging.  This function is intended for Avaya use,
+                        in debugging if necessary."
+                    ::= { endptID 49 }
+endptMACADDR    OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "MAC address. This variable returns a 6-octet 
+                        string specifying the endpoint's MAC address."
+                    ::= { endptID 50 }
+endptMEDIAENCRYPTION  OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Media encryption settings. This variable  
+                        returns a string specifiying the cryptosuite and 
+                        session parameter for media encryption."
+                    ::= { endptID 51 }
+endptMODEL      OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Model identifier. This variable returns 
+			a string of up to 8 ASCII characters."
+                    ::= { endptID 52 }
+endptMTUSIZE  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Maximum Transmission Unit size. This  
+                        variable returns the maximum number of octects 
+                        in Ethernet frames. Possible values are 1496 and 1500, 
+                        default is 1500. 1496 is possible to accommodate
+                        older Ethernet switches that cannot support the longer 
+                        maximum frame length of tagged frames."
+                    ::= { endptID 53 }
+endptNETMASK    OBJECT-TYPE
+                    SYNTAX      IpAddress
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Subnet mask. This variable returns a  
+                        4-octet string specifying the subnet mask 
+                        currently in use."
+                    ::= { endptID 54 }
+endptPERSONALRING  OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Ring pattern setting. This variable returns a 
+                        string specifying the personal ringing pattern  
+                        currently selected."
+                    ::= { endptID 55 }
+endptPHONECC     OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Phone comcode. This variable returns a string 
+			of up to 9 numerical characters, specifying the comcode
+                        of the endpoint itself." 
+                    ::= { endptID 56 }
+endptPHONESN    OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Housing serial number. This variable 
+			returns a string of up to 18 ASCII characters, 
+			specifying the serial number on the outside 
+                        of the endpoint's housing."
+                    ::= { endptID 57 }
+endptPHY1DUPLEX OBJECT-TYPE
+                    SYNTAX      INTEGER 
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Ethernet line interface duplex setting. This  
+			variable returns 1 if the interface is half-duplex and 
+                        2 if the interface is full duplex."
+                    ::= { endptID 58 }
+endptPHY1SPEED  OBJECT-TYPE
+                    SYNTAX      INTEGER 
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Ethernet interface speed. This variable 
+			returns a string specifying the endpoint's Ethernet
+			interface speed in Mbps: '1000', '100' or '10'."
+                    ::= { endptID 59 }
+endptPHY1STAT   OBJECT-TYPE
+                    SYNTAX      INTEGER  
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Ethernet line interface administration.  
+			This variable returns 1, if the Ethernet line 
+			interface is currently for auto-negotiation, 2 for 
+			10Mbps half-duplex, 3 for 10Mbps full-duplex, 4 for 
+			100Mbps half-duplex, 5 for 100Mbps full-duplex, 
+			and 6 for 1000Mbps full-duplex (if supported 
+                        by hardware)."
+                    ::= { endptID 60 }
+endptPHY2DUPLEX OBJECT-TYPE
+                    SYNTAX      INTEGER 
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Secondary Ethernet interface duplex setting.  
+			This variable returns 0 if no link is established, 
+                        1 if the interface is half-duplex, and 2 if 
+                        the interface is full duplex."
+                    ::= { endptID 61 }
+endptPHY2PRIO   OBJECT-TYPE
+                    SYNTAX      INTEGER  
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Secondary Ethernet interface Layer 2 priority. 
+			This variable returns 0 through 7, and is used with   
+                        endptVLANSEP. The default is 0."
+                    ::= { endptID 62 }
+endptPHY2SPEED  OBJECT-TYPE
+                    SYNTAX      INTEGER 
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Secondary Ethernet speed. This variable 
+			returns a string specifying the endpoint's Ethernet
+			interface speed in Mbps: '1000', '100' or '10' or '0'."
+                    ::= { endptID 63 }
+endptPHY2STAT   OBJECT-TYPE
+                    SYNTAX      INTEGER  
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Secondary Ethernet interface administration.  
+			This variable returns 0 if the endpoint's Secondary 
+                        Ethernet interface is currently NOT enabled, 1 if the 
+                        Secondary Ethernet interface is currently for    
+			auto-negotiation, 2 for 10Mbps half-duplex, 3 for  
+			10Mbps full-duplex, 4 for 100Mbps half-duplex, 5 for  
+			100Mbps full-duplex, and 6 for 1000Mbps full-duplex 
+                        (if supported by hardware)."
+                    ::= { endptID 64 }
+endptPHY2VLAN   OBJECT-TYPE
+                    SYNTAX      INTEGER  
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Secondary Ethernet interface VLAN ID. This 
+			variable returns an integer between 0 and 4094  
+                        inclusive specifying the current Layer 2 802.1Q  
+                        VLAN Identifier value for tagged frames received  
+                        on the secondary Ethernet interface while VLAN 
+                        separation is enabled."
+                    ::= { endptID 65 }
+endptPORTAUD    OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Transport-layer audio port(s). This variable 
+                        returns the endpoint's transport layer port number(s) 
+                        for audio connection(s), currently in use."
+                    ::= { endptID 66 }
+endptPROCPSWD   OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Local Procedure Password. This variable returns
+                        0 if the Local Procedure Password is null, else 1."
+                    ::= { endptID 67 }
+endptPROCSTAT   OBJECT-TYPE
+                    SYNTAX      INTEGER  
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Local Procedure flag. This variable returns 
+                        0 if Local Procedures are currently allowed for this 
+                        endpoint, else 1."
+                    ::= { endptID 68 }
+endptPWBCC      OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "PWB comcode. This variable returns  
+                        a string of up to 9 numerical characters, 
+                        specifying the comcode or version number of 
+                        the printed wiring board of the endpoint."
+                    ::= { endptID 69 }
+endptPWBSN      OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "PWB serial number. This variable 
+			returns a string of up to 18 ASCII characters, 
+			specifying the serial number on the endpoint's 
+			printed wiring board, or N/A if the board has 
+                        no serial number."
+                    ::= { endptID 70 }
+endptROUTER     OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "List of router addresses.  This variable 
+			returns a sequence of IP addresses, in  
+			dotted-decimal format and separated by commas, 
+                        of routers available for use."
+                    ::= { endptID 71 }
+endptROUTERINUSE   OBJECT-TYPE
+                    SYNTAX      IpAddress
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Router address.  This variable returns  
+                        a 4-octet string specifying the IP address of 
+                        the router currently in use."
+                    ::= { endptID 72 }
+endptRSVPCONT   OBJECT-TYPE
+                    SYNTAX      INTEGER 
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "RSVP Control flag. This variable is   
+			a placeholder for future use. It currently 
+                        returns '-1'."
+                    ::= { endptID 73 }
+endptRSVPRFRSH  OBJECT-TYPE
+                    SYNTAX      INTEGER 
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "RSVP Refresh rate. This variable is   
+			a placeholder for future use. It currently 
+                        returns '-1'."
+                    ::= { endptID 74 }
+endptRSVPRTRY   OBJECT-TYPE
+                    SYNTAX      INTEGER 
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "RSVP Failed Retry flag. This variable 
+			is a placeholder for future use. It currently 
+                        returns '-1'."
+                    ::= { endptID 75 }
+endptRSVPPROF   OBJECT-TYPE
+                    SYNTAX      INTEGER 
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "RSVP profile flag. This variable is   
+			a placeholder for future use. It currently 
+                        returns '-1'."
+                    ::= { endptID 76 }
+endptRTCPCONT   OBJECT-TYPE
+                    SYNTAX      INTEGER 
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "RTCP Control flag. This variable returns
+                        0 if the RTCP control status is off/disabled, else 1."
+                    ::= { endptID 77 }
+endptRTCPFLOW   OBJECT-TYPE
+                    SYNTAX      INTEGER 
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "RTCP Flowrate. This variable returns
+                        an integer between 5 and 30 inclusive specifying the
+                        RTCP flowrate in seconds."
+                    ::= { endptID 78 }
+endptRTCPMON    OBJECT-TYPE
+                    SYNTAX      IpAddress
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "RTCP Monitor address.  This variable returns a 
+                        4-octet string specifying the IP address of the RTCP
+                        monitor currently in use."
+                    ::= { endptID 79 }
+endptRTCPMONPORT  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "RTCP Monitor port. This variable returns the 
+			RTCP monitor transport-layer destination port number 
+			(from 0 to 65535; default is 5005)."
+                    ::= { endptID 80 }
+endptSENDDTMFTYPE  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "DTMF mode. This variable returns 1 if 
+                        the endpoint sends DTMF in-band tones, and 2 for 
+                        negotiation and transmission of DTMF according to 
+                        RFC 2833."
+                    ::= { endptID 81 }
+endptSIG	    OBJECT-TYPE
+                    SYNTAX      INTEGER  
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Signaling protocol download flag. This  
+                        variable returns the integer corresponding to the 
+                        current signaling protocol."
+                    ::= { endptID 82 }
+endptSKININUSE   OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Current skin definition. This variable returns
+                        a label specifying the skin definition currently used.
+                        If built-in default skin defintion is used, it is empty.
+                        Otherwise it contains the skin label as received with  
+                        the corresponding skin file downloaded at 
+                        endpoint initialization."
+                    ::= { endptID 83 }
+endptSNMPADD    OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "SNMP source addresses. This variable returns 
+			one or more allowable source IP addresses for SNMP 
+                        queries, in dotted decimal or DNS format."
+                    ::= { endptID 84 }
+endptSSON    OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Site-specific option number. This variable 
+                        returns an integer between 128 and 254 inclusive,
+                        specifying the SSON stored.  The default is 242."
+                    ::= { endptID 85 }
+endptSPEAKERSTAT  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Speakerphone mode. This varialbe returns 
+                        the current speakerphone mode: 0 if speakerphone 
+                        capability is disabled or not existing, 1 if 
+                        one-way speakerphone operation (monitor) is possible, 
+                        and 2 if two-way speakerphone operation is possible."
+                    ::= { endptID 86 }
+endptSYSLOGENABLED   OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Remote logging status. This variable returns 
+                        0 if transmission of log messages to the log server 
+                        is disabled, else 1."
+                    ::= { endptID 87 }
+endptTCPKEEPALIVESTAT  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "TCP keep alive status. This variable returns 
+                        0 if TCP keep alive is NOT performed, else 1."
+                    ::= { endptID 88 }
+endptTIMEFORMAT  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Time Format setting. This variable returns 0 
+                        if time is displayed in 'am/pm' format, and 1 if it is 
+                        displayed in 24 hour format."
+                    ::= { endptID 89 }
+endptTLSDIR     OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "TLS server Directory.  This variable returns 
+			the path used in formation of the URI for HTTPS GET 
+                        operations to access TLS initialization server."
+                    ::= { endptID 90 }
+endptTLSPORT    OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "TLS server Port.  This variable returns the 
+			port used for HTTPS GET operations to access 
+                        TLS initialization server."
+                    ::= { endptID 91 }
+endptTLSSRVR    OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "TLS server addresses. This variable returns  
+			zero or more Transport Layer Security server addresses 
+                        for use during initialization, in dotted decimal or 
+                        DNS format."
+                    ::= { endptID 92 }
+endptTLSUSED    OBJECT-TYPE
+                    SYNTAX      IpAddress
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "TLS server address used. This variable  
+			returns the TLS server address from TLSSRVR used,  
+			if any, during  initialization, or all zeroes if 
+                        no TLS server was used."
+                    ::= { endptID 93 }
+endptTMSEC      OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Transmit audio packetization delay(s). This 
+                        variable returns the number(s) of milliseconds of  
+                        delay added by packetization and coding for audio 
+                        transmission for each active audio connection."
+                    ::= { endptID 94 }
+endptUSEDHCP    OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "DHCP mode. This variable returns 0 if IP 
+                        address is a static configuration, or 1 
+                        if a dynamic IP address is received via DHCP."
+                    ::= { endptID 95 }
+endptVLANSEP    OBJECT-TYPE
+                    SYNTAX      INTEGER  
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "VLAN separation value. This variable returns 0
+			 if frames received on the secondary Ethernet interface 
+                         are unchanged before forwarding; else 1, which is 
+                         the default."
+                    ::= { endptID 96 }
+endptVLANTEST    OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "VLAN pause parameter. This variable returns 
+                        the number of seconds stored for the endpoint to 
+                        wait for a DHCPOFFER message when using a non-zero   
+                        VLAN ID. Valid values are integers from 0 to 999 
+                        inclusive."
+                    ::= { endptID 97 }
+endptTRUSTCERTS  OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Trusted Certificate URLs. This variable returns
+                        the URLs of certificate files that are considered as  
+                        trusted certificates and requested to download into 
+                        the endpoint at boot-time."
+                    ::= { endptID 98 }
+endptMYCERTURL    OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "SCEP server URL. This variable returns a  
+                        string specifying the URL of the SCEP (Simple 
+                        Certificate Enrollment Protocol) server used for 
+                        certificate enrollment."
+                    ::= { endptID 99 }
+endptMYCERTCN   OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Common Name for Subject in SCEP request. 
+                        This variable returns '$SERIALNO' if the endpoint's 
+                        serial number is included in the SCEP request, 
+                        or'$MACADDR' if its MAC address is used instead."
+                    ::= { endptID 100 }
+endptMYCERTDN   OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Subject definition for SCEP request. 
+                         This variable returns the part in a SCEP request, 
+                         which is common for requests from different 
+                         Avaya SIP endpoints."
+                    ::= { endptID 101 }
+endptMYCERTKEYLEN  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Private key length. This varialbe returns 
+                        the length of the private key in bits to be created 
+                        in the endpoint for certificate enrollment. 
+                        The default is 1024 bits."
+                    ::= { endptID 102 }
+endptMYCERTRENEW  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Certificate renewal threshold. 
+                        This variable returns an integer between 1 and 99 
+                        inclusive specifying the moment the endpoint starts 
+                        to contact the SCEP server for certificate renewal. 
+                        It is specified by a percentage to be applied to 
+                        the device certificate's validity Object."
+                    ::= { endptID 103 }
+endptMYCERTWAIT  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Certificate wait flag. This variable returns 
+                        0 if certificate enrollment is done periodically in 
+                        the background, and 1 if the endpoint waits to continue 
+                        with startup operation until a response from SCEP 
+                        server is received."
+                    ::= { endptID 104 }
+endptHTTPPROXY  OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "HTTP Proxy for SCEP. This variable returns 
+			a string specifying a HTTP proxy IP address, in 
+                        dotted-decimal or DNS format, optionally follwed by a 
+                        colon and port number. If the variable is NOT null,
+                        this transport address is used to set up HTTP 
+                        connection for SCEP. "
+                    ::= { endptID 105 }
+endptHTTPEXCEPTIONDOMAINS  OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "HTTP exception domains for SCEP. This 
+                        variable returns a comma-separated list of zero or 
+                        more domain names. A HTTP connection for SCEP
+                        is NOT set up via HTTPPROXY, if the rightmost part 
+                        of MYCERTURL matches one of the values of the 
+                        listed domains."
+                    ::= { endptID 106 }
+endptAUTHONLY  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Authentication flag for setting file download. 
+                        This variable returns 0 if setting files are allowed to 
+                        be received via HTTP and HTTPs, and 1, if they are only 
+                        allowed to be received via HTTPS."
+                    ::= { endptID 107 }
+endptLOGCATEGORY  OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Logging category list. This variable returns 
+                        zero or more keywords representing endpoint functions 
+                        to be included in lower level logging (i.e. traces 
+                        for level 'warning' or lower) or the string 'All' 
+                        meaning lower level logging is performed for each 
+                        endpoint function. Default is an empty string, which  
+                        precludes any lower level logging." 
+                    ::= { endptID 108 }
+endptTRUSTLIST    OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Trusted Certificate list. This variable  
+                        returns the names of the trusted certificate files  
+                        that are successfully downloaded into the endpoint."
+                    ::= { endptID 109 }
+endptMYCERTCAID   OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Certificate Authority (CA) Identifier. 
+                        This variable returns the CA Identitifier string
+                        included in GET certificate requests."
+                    ::= { endptID 110 }
+endptPHNEMERGNUM  OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Emergency number. This variable returns
+                        a string specifying the emergency number to be  
+                        outpulsed when the user presses Emergency softkey."
+                    ::= { endptID 111 }
+endptDOT1XSTAT    OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "802.1X status. This variable returns 
+			0 if Supplicant operation is disabled, 1 if
+                        supplicant operation is enabled, but endpoint 
+                        responds only to recieved unicast EAPOL messages,  
+                        and 2 if supplicant operation is enabled, and
+                        endpoint responds to received unicast and multicast
+                        EAPOL messages. The default is 1."
+                    ::= { endptID 112 }
+endptDOT1XEAPS    OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "802.1X EAP methods. This variable 
+                        returns a list of EAP authentication method(s)
+                        the endpoint supports. The default is 'MD5,TLS'."
+                    ::= { endptID 113 }
+endptLLDPSTAT     OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "LLDP status. This variable returns 
+			0 if LLDP operation is disabled, 1 if
+                        LLDP operation is enabled, and 2 (auto) if 
+                        the endpoint supports LLDP, but the transmission
+                        of LLDP frames does not begin until or unless
+                        an LLDP frame is received. The default is 2."
+                    ::= { endptID 114 }
+endptPOECONSSUPPORT  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Power over Ethernet conservation support.
+                        This variable returns 0 if power over Ethernet 
+                        conservation support is disabled, and 1 if it is 
+                        enabled. The default is 'ON'."
+                    ::= { endptID 115 }
+endptPOECONSMODE  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Power over Ethernet conservation mode.
+                        This variable returns the endpoint's current power
+                        over Ethernet conservation mode. It returns 0 for
+                        'OFF' and 1 for 'ON'."
+                    ::= { endptID 116 }
+endptNVTRUSTCERTS  OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "The last value of TRUSTCERTS explicitly
+                        set in the configuration file."
+                    ::= { endptID 117 }
+endptCONFIGSERVERSECUREMODE  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Communication mode to the configuration server.
+                        This variable returns 0 if the endpoint is using HTTP to 
+                        communicate with the configuration server, 1 if using HTTPS, 
+                        and 2 if using HTTPS if the SIP transport type is TLS and 
+                        HTTP if the SIP transport is not TLS."
+                    ::= { endptID 118 }
+endptSUPPORTGIGABIT  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "An indication that the phone supports Gigabit 
+                        Ethernet. This variable returns a 0 if the endpoint does not 
+                        support Gigabit Ethernet and 1 if it does support 
+                        Gigabit Ethernet."
+                    ::= { endptID 119 }
+endptTLSSRVRID      OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Indicates if TLS server identification is required.
+                        This variable returns a 0 if no certificate match is necessary
+                        and 1 if a certificate match is required."
+                    ::= { endptID 120 }
+endptVLANLIST    OBJECT-TYPE SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "VLAN ID list. This variable returns a list of zero or more VLAN IDs." 
+                    ::= { endptID 121 }
+endptENABLEG711A      OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Indicates whether the G711A codec is enabled or disabled.
+                        This variable returns a 0 if the codec is disabled
+                        and 1 if the codec is enabled (default)."
+                    ::= { endptID 122 }
+endptENABLEG711U      OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Indicates whether the G711U codec is enabled or disabled.
+                        This variable returns a 0 if the codec is disabled
+                        and 1 if the codec is enabled (default)."
+                    ::= { endptID 123 }
+endptENABLEG729      OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Indicates the status of the G729 codec.
+                        This variable returns a 0 if the codec is disabled. It returns a 1 when the phone 
+                        advertises a preference for G.729(A) enabled, without Annex B support in an outbound INVITE request, 
+                        and accepts either G729A or G729A with annex B support [G.729AB] when received in a 200OK response 
+                        or an incoming INVITE request. It returns a 2 when the phone advertises a preference for 
+                        G.729(A) enabled, with Annex B support [G.729AB]in an outbound INVITE request, 
+                        and accepts either G729A or G729AB when received in a 200OK response or an incoming INVITE request."
+                    ::= { endptID 124 }
+endptENABLEG722      OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Indicates whether the G722 codec is enabled or disabled.
+                        This variable returns a 0 if the codec is disabled (default)
+                        and 1 if the codec is enabled."
+                    ::= { endptID 125 }
+endptENABLEG726      OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Indicates whether the G726 codec is enabled or disabled.
+                        This variable returns a 0 if the codec is disabled
+                        and 1 if the codec is enabled (default)."
+                    ::= { endptID 126 }
+endptSYSTEMLANGUAGE  OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "System Default Language. This variable returns
+                        the name of the file that contains the language strings currently used."
+                    ::= { endptID 127 }
+endptLANG0STAT      OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Indicates whether or not the built-in English is offered to the user 
+                        as selectable item in the language selection menu.
+                        This variable returns a 0 if the built-in English is not offered
+                        and 1 if it is selectable item in the languauge selection menu."
+                    ::= { endptID 128 }
+
+endptMaintenance        OBJECT IDENTIFIER ::= { avayaSparkMIB 3 }
+endptAPPSTAT    OBJECT-TYPE 
+                    SYNTAX      INTEGER  
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Application download flag. This variable
+			returns '0' if the most recent attempt to download
+			and store an application file was successful. This
+			variable returns '1' if the most recent attempt to
+			download an application file was successful but the
+			file was not successfully stored in NVM.  This variable
+			returns '2' if the most recent attempt to download an
+			application file was NOT successful."
+		    ::= { endptMaintenance 1 }
+endptUPGRADESTAT OBJECT-TYPE 
+                    SYNTAX      INTEGER  
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Script loading status flag. This variable
+                        returns '0' if a 96xxupgrade.txt file was successfully 
+                        obtained and interpreted since the last power-up or  
+                        reset. This variable returns '1' if the file was  
+                        successfully obtained but NOT successfully interpreted  
+                        since the last power-up or reset. This variable returns 
+                        '2' if the file was NOT successfully obtained since the 
+                        last power-up or reset."
+                    ::= { endptMaintenance 2 }
+endptRecentLog  OBJECT-TYPE
+		  SYNTAX SEQUENCE OF EndptRecentLogEntry
+		  MAX-ACCESS	not-accessible
+		  STATUS		current
+		  DESCRIPTION	"Each entry is one of up to 75 syslog event 
+			messages added since last reset or power-up, each of 
+			which has severity code less than the value of the  
+                        administered log level and which matchs for level 
+                        'warning' and below to the administered log categories.
+			Entries are in chronological order, oldest first."
+		  ::= { endptMaintenance 3 }
+endptRecentLogEntry	OBJECT-TYPE
+		  SYNTAX EndptRecentLogEntry
+		  MAX-ACCESS	not-accessible
+		  STATUS		current
+		  DESCRIPTION	"Each entry is one of up to 75 syslog event 
+			messages added since last reset or power-up, each of 
+			which has severity code less than the value of the  
+                        administered log level and which matchs for level 
+                        'warning' and below to the administered log categories.
+			Entries are in chronological order, oldest first."
+		  INDEX		{ endptRecentLogText }
+		  ::= { endptRecentLog 1 }
+EndptRecentLogEntry	    ::= 
+			SEQUENCE {
+					endptRecentLogText
+			 			DisplayString
+				}
+endptRecentLogText	OBJECT-TYPE
+		  SYNTAX		DisplayString (SIZE(0..255))
+		  MAX-ACCESS	read-only
+		  STATUS		current
+		  DESCRIPTION	"Syslog event message."
+		  ::= { endptRecentLogEntry 1 }	
+endptResetLog   OBJECT-TYPE
+		  SYNTAX SEQUENCE OF EndptResetLogEntry
+		  MAX-ACCESS	not-accessible
+		  STATUS		current
+		  DESCRIPTION	"Each entry is one of up to 75 syslog event 
+			messages added before the last reset or power-up, each 
+			of which has severity code less than the value of the  
+                        administered log level and which matchs for level 
+                        'warning' and below to the administered log categories. 
+			Entries are in chronological order, oldest first."
+		  ::= { endptMaintenance 4 }
+endptResetLogEntry	OBJECT-TYPE
+		  SYNTAX EndptResetLogEntry
+		  MAX-ACCESS	not-accessible
+		  STATUS		current
+		  DESCRIPTION	"Each entry is one of up to 75 syslog event 
+			messages added before the last reset or power-up, each  
+			of which has severity code less than the value of the  
+                        administered log level and which matchs for level 
+                        'warning' and below to the administered log categories. 
+			Entries are in chronological order, oldest first."
+		  INDEX		{ endptResetLogText }
+			  ::= { endptResetLog 1 }
+EndptResetLogEntry	    ::= 
+				SEQUENCE {
+			  		endptResetLogText
+			  			DisplayString
+				}
+endptResetLogText	OBJECT-TYPE
+		  SYNTAX		DisplayString (SIZE(0..255))
+		  MAX-ACCESS	read-only
+		  STATUS		current
+		  DESCRIPTION	"Syslog event message."
+		  ::= { endptResetLogEntry 1 }	
+endptRESTARTCOUNTER OBJECT-TYPE 
+                    SYNTAX      INTEGER  
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Counter of restarts after power-up. This 
+                        variable is reset to 0 after each power-up. Subsequent 
+                        restarts increment the variable by one 
+                        (but not the initial start-up after power-up)."
+		    ::= { endptMaintenance 5 }
+
+endptApps    OBJECT IDENTIFIER ::= { avayaSparkMIB 4 }
+endptEXTAPPIFPORT  OBJECT-TYPE
+                    SYNTAX      INTEGER 
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "External Application Interface port. This 
+                        variable returns the port number of endpoint's XML 
+                        interface for external applications. Default is 6225."  
+                    ::= { endptApps 1 }
+endptEXTAPPIFSTATUS  OBJECT-TYPE
+                    SYNTAX      INTEGER 
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "External Application Interface status. This 
+                        variable returns 1 if endpoint's XML interface for 
+                        external applications is a TCP interface, and 2 
+                        if it is a TLS over TCP interface. Default is 1."  
+                    ::= { endptApps 2 }
+endptEXTAPPIFTYPE  OBJECT-TYPE
+                    SYNTAX      INTEGER 
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "External Application Interface type. This 
+                        variable returns 0 if endpoint's XML interface for 
+                        external applications is disabled, else 1."  
+                    ::= { endptApps 3 }
+endptAUDIOPATH  OBJECT-TYPE
+                    SYNTAX      INTEGER 
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "User audio path.  This variable returns 0 if 
+			the telephone does not support a 2-way speaker or does 
+                        not have a headset jack; 1 if the user audio path is  
+                        with the speakerphone, and 2 if the user audio path is 
+                        with the headset."  
+                    ::= { endptApps 4 }
+endptENHDIALSTAT  OBJECT-TYPE
+                    SYNTAX      INTEGER 
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Enhanced Local Dialing status.  This variable 
+			returns 0 if the Enhanced Local Dialing status is
+                        off/disabled, 1 if enhanced local dialing is partially 
+                        enabled (does NOT apply for dialing from contatcs), 
+                        and 2 if enhanced dialing is fully enabled."                     
+                    ::= { endptApps 5 }
+endptEXCHANGESRVR  OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Exchange server addresses. This variable  
+			returns zero or more MS Exchange (TM) server addresses 
+                        for retrieval of calendar or contact data, in dotted 
+                        decimal or DNS format."  
+                    ::= { endptApps 6 }
+endptEXCHANGESRVRINUSE  OBJECT-TYPE
+                    SYNTAX      IpAddress
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Exchange server IP address.  This variable  
+			returns a 4-octet IP address for the MS Exchange (TM) 
+                        server used to retrieve calendar or contact data 
+                        (all zeros if no server used)."  
+                    ::= { endptApps 7 }
+endptMMSRVR     OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Modular Messaging server addresses. This 
+                        variable is a placeholder for future use."  
+                    ::= { endptApps 8 }
+endptMMSRVRINUSE  OBJECT-TYPE
+                    SYNTAX      IpAddress
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Modular Messaging server IP address. This 
+                        variable returns a 4-octet IP address for the Modular 
+                        messaging server (all zeros if no server used)."  
+                    ::= { endptApps 9 }
+endptMMPORT     OBJECT-TYPE
+                    SYNTAX      INTEGER 
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Modular Messaging server port. This variable
+			is a placeholder for future use. It currently 
+                        returns '-1'."  
+                    ::= { endptApps 10 }
+endptWMLEXCEPT    OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Web Proxy Server Exception List. This 
+                       variable returns a string specifying a list of one or 
+                       more HTTP proxy server Exception domains, separated by 
+                       commas with no intervening spaces. Used by the Web
+                       Browser application."  
+                    ::= { endptApps 11 }
+endptWMLHOME      OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Web application URL. This variable returns
+                        a URL of the Home page for the Web Browser application."  
+                    ::= { endptApps 12 }
+endptWMLIDLETIME  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Web Idle Timer. This variable returns the number
+                       of minutes, from 1 to 60 inclusive, of idle activity on the
+                       telephone before the Web Idle Timer URI is displayed."  
+                    ::= { endptApps 13 }
+endptWMLIDLEURI   OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Web Idle Timer URI. This variable returns the
+                        URI of the WML page displayed after the Web 
+                        Idle Timer expires."  
+                    ::= { endptApps 14 }
+endptWMLPORT      OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Web Browser application TCP port. This variable 
+                        returns an integer specifying the TCP port used for  
+                        the Web proxy server.  Used by the Web
+                        Browser application."  
+                    ::= { endptApps 15 }
+endptWMLPROXY     OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Web Proxy Server. This variable returns
+                        an IP addresses, in dotted-decimal or DNS format, of an  
+                        HTTP proxy server.  Used by the Web Browser application."  
+                    ::= { endptApps 16 }
+endptAGENTTONE     OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Agent tone. This variable is a
+                        placeholder for future use."
+                    ::= { endptApps 17 }
+endptPHNDSPLYALERT     OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Display call on ringing option. This variable
+                        is a placeholder for future use."
+                    ::= { endptApps 18 }
+endptPROVIDEEDITEDDIALING     OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Control whether edited dialing is provided 
+                        as a user option. This variable returns 0 when the 
+                        edited dialing option is not displayed, the user cannot 
+                        change the option. and the phone defaults to on-hook dialing.
+                        It returns 1 when the edited dialing option is not displayed, 
+                        the user cannot change the option. and the phone defaults to 
+                        edit dialing. It returns 2 when the edited dialing option 
+                        is displayed, the user can change the option. and the phone 
+                        defaults to on-hook dialing.
+                        It returns 3 when the edited dialing option is displayed, 
+                        the user can change the option. and the phone defaults 
+                        to edit dialing."
+                    ::= { endptApps 19 }
+endptFAVORITES     OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Represents a list of favorites.
+                        This variable returns a string representing the list of 
+                        favorites selected by the user." 
+                    ::= { endptApps 20 }
+endptPROVIDETRANSFERTYPE     OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "When the AVAYAENVIRONMENT variable is 0, 
+                        this parameter controls the display of the transfer type option 
+                        in the A menu. This variable returns 0 if the option is not shown 
+                        and 1 if it is shown, allowing the user to choose the 
+                        type of transfer."
+                    ::= { endptApps 21 }
+endptCALLTRANSFERMODE     OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "When the AVAYAENVIRONMENT variable is 0, 
+                        this parameter controls the default transfer mode. 
+                        This variable returns 0 if the mode is attended and 
+                        1 if the mode is unattended."
+                    ::= { endptApps 22 }
+endptCNGLABEL       OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Controls the ability to personalize button labels 
+                        displayed to the user.
+                        This variable returns 0 if the user cannot personalize the labels 
+                        and 1 if the user can personalize the labels."
+                    ::= { endptApps 23 }
+endptQKLOGINSTAT    OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Controls whether a password must always be entered manually.
+                        This variable returns 0 if manual password entry is mandatory
+                        and 1 if the user can perform a quick login by pressing the continue 
+                        soft key on the Login screen to accept the current password value."
+                    ::= { endptApps 24 }
+endptPUSHCAP  OBJECT-TYPE
+                    SYNTAX      DisplayString                  
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Push capabilities. This variable returns a 
+                        5-digit integer specifying the phone administration for phoneXML, 
+                        audio transmit, audio receive, display (web), and Top Line pushes, respectively.
+                        The valid digits are 0 (Disabled), 1 (barge-in only ypushes of the given
+                        type Enabled) and 2 (both barge-in and normal pushes of the given
+                        type Enabled).  The default is 00000."
+                    ::= { endptApps 25 }
+endptPUSHPORT  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Push listening port. This variable returns an 
+                       integer specifying the TCP listening port most recently 
+                        used for the HTTP server.."
+                    ::= { endptApps 26 }
+endptSUBSCRIBELIST    OBJECT-TYPE
+                    SYNTAX      DisplayString 
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "96xx Web push subscription list. This 
+                       variable returns a string containing one or more fully 
+                       qualified URLs to which the phone's Browser application 
+                       subscribes for potential pushed content."
+                    ::= { endptApps 27 }
+endptTPSLIST    OBJECT-TYPE
+                    SYNTAX      DisplayString 
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "96xx Web Trusted Push Server list. This 
+                       variable returns a string containing one or more domains 
+                       and paths in DNS format, used to determine for 
+                       validation of push requests."
+                    ::= { endptApps 28 }
+endptCURRENTCONTENT    OBJECT-TYPE
+                    SYNTAX      DisplayString 
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "96xx URL of the customization file for the Home 
+                       Screen. This variable returns a string containing the location 
+                       of the XML file that is used to defined the contents of the Home 
+                       screen."
+                    ::= { endptApps 29 }
+endptDISPLAYNAMENUMBER  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Controls whether both the name and the number are displayed
+                       for an incoming call. This variable returns 0 when only the name is shown.
+                       The variable returns 1 when both the name and number are shown."
+                    ::= { endptApps 30 }
+endptPROVIDEEXCHANGECALENDAR  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Flag to define whether or not menu item(s) for MS Exchange(tm) Calendar 
+                       integration are provided to user. This variable returns 0 when the menu is
+                       not provided to the user and 1 when the menu is provided. The default is 1."
+                    ::= { endptApps 31 }
+endptEXCHANGESERVERLIST  OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "List of Microsoft Exchange server IP or DNS addresses.
+                       This variable returns zero or more IP addresses in dotted decimal or DNS name format, 
+                       separated by commas without any intervening spaces."
+                    ::= { endptApps 32 }
+endptEXCHANGESERVERINUSE  OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "The Microsoft Exchange server currently used.
+                       This variable returns one IP address in dotted decimal format."
+                    ::= { endptApps 33 }
+endptUSEEXCHANGECALENDAR  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Activate or deactivate usage of calendar on a Microsoft Exchange Server.
+                       This variable returns 0 when the calendar is disabled and
+                       1 when the calendar is enabled. The default is 0."
+                    ::= { endptApps 34 }
+endptEXCHANGEUSERDOMAIN  OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "The user domain for a Microsoft Exchange Server.
+                       This variable returns a string with the user domain."
+                    ::= { endptApps 35 }
+endptEXCHANGEUSERACCOUNT  OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "The user's account for the Microsoft Exchange Server
+                       This variable returns a string with the user's account."
+                    ::= { endptApps 36 }
+endptENABLEEXCHANGEREMINDER  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Controls whether Exchange popup reminder notifications are enabled.
+                       This variable returns 0 when reminders are disabled and
+                       1 when reminders are enabled. The default is 0."
+                    ::= { endptApps 37 }
+endptEXCHANGEREMINDERTIME  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Controls how far in advance the user wants to get the reminder for an appointment.
+                       This variable has a range of 0 to 60 minutes. The default is 5 minutes."
+                    ::= { endptApps 38 }
+endptEXCHANGESNOOZETIME  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Controls how long in minutes for the Reminder to reappear 
+                       after it has been snoozed (temporally dismissed) by the user.
+                       This variable returns 0 when only the name is shown.
+                       This variable has a range of 0 to 60 minutes. The default is 5 minutes."
+                    ::= { endptApps 39 }
+endptEXCHANGEREMINDERTONE  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Enables or disables the generation of a reminder tone (error beep) 
+                       that will be played when the Reminder popup appears.
+                       This variable returns 0 when the tone is disabled and
+                       1 when the tone is enabled."
+                    ::= { endptApps 40 }
+endptEXCHANGENOTIFYSUBSCRIPTIONPERIOD  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Controls the resynchronization interval with the Exchange server.
+                       This variable returns a value between 0 and 3600 seconds.
+                       The default is 180 seconds."
+                    ::= { endptApps 41 }
+endptENABLEPHONELOCK  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Enables or disables the local station lock feature.
+                       This variable returns 0 when the feature is disabled and
+                       1 when the feature is enabled. The default is 0."
+                    ::= { endptApps 42 }
+endptPHONELOCKIDLETIME  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Controls the idle time for the Phone Lock feature.
+                       This variable returns 0 when the phone does not lock.
+                       The variable returns 1  to 999 to show the number of minutes of 
+                       idle time before the phone locks. The default is 0."
+                    ::= { endptApps 43 }
+
+endptAdjuncts   OBJECT IDENTIFIER ::= { avayaSparkMIB 5 }
+endptBMODS      OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Button Modules attached. This variable returns
+                        the number of Button Modules attached (or daisy-chained)
+                        to the endpoint."
+                    ::= { endptAdjuncts 1}
+
+
+endptSIP   OBJECT IDENTIFIER ::= { avayaSparkMIB 7 }
+endptALPHANUMDIALING  OBJECT-TYPE                   
+                    SYNTAX      INTEGER                   
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Alphanumeric dialing mode. This variable 
+                        returns 0 if only numeric dialing is possible, else 1."
+                    ::= { endptSIP 1 }
+endptAVAYAENVIRONMENT  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Avaya environment mode. This variable returns 
+                        0 if the endpoint is supposed to operate in a 3rd-party
+                        SIP proxy environment, and 1 if it suppossed to operate
+                        in an Avaya SES/CM environment."
+                    ::= { endptSIP 2 }
+endptCONFSRVR   OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Conference server URI. This variable is 
+                        a placeholder for future use."
+                    ::= { endptSIP 3 }
+endptCONFSRVRINUSE  OBJECT-TYPE
+                    SYNTAX      IpAddress
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Conference server IP address.  This variable  
+			returns a 4-octet IP address for the server used for 
+                        server-based conferencing (all zeros if no conference 
+                        server used)."
+                    ::= { endptSIP 4 }
+endptCONFTYPE   OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Conference Type. This variable returns 0 if 
+                        the endpoint supports local conferencing, 1 if it  
+                        supports SIP-AST server-based conferencing, and 2 if  
+                        it supports 'click-to-conference'-based conferencing."
+                    ::= { endptSIP 5 }
+endptDIALPLAN   OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "SIP dial plan.  This variable returns the 
+                        administered dial plan, used during manual dialing to  			      
+                        allow a call to be initiated without the use of a Send  
+                        button and without waiting for the expiration of a 
+                        timeout interval; up to 1000 characters; not used in 
+                        an Avaya SES SIP proxy environment."
+                    ::= { endptSIP 6 }
+endptEARLYMEDIA  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Early media mode. This variable returns 0 if 
+                        SIP early media is off/disabled, else 1."
+                    ::= { endptSIP 7 }
+endptMUSICSRVR  OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Music server addresses. This variable returns 
+                        zero or more IP addresses, in dotted decimal or DNS  
+                        format and separated by commas, of Music-on-Hold 
+                        servers available for use."
+                    ::= { endptSIP 8 }
+endptMUSICSRVRINUSE  OBJECT-TYPE
+                    SYNTAX      IpAddress
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Music server IP address. This variable returns 
+			a 4-octet IP address for the Music-on-Hold server most 
+			recently used (all zeros if no music server used)."
+                    ::= { endptSIP 9 }
+endptMWISRVR    OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Message Waiting Indication server addresses. 
+                        This variable returns zero or more IP addresses, in 
+                        dotted decimal or DNS format and separated by commas, of
+                        Message Waiting Indication servers available for use."
+                    ::= { endptSIP 10 }
+endptMWISRVRINUSE  OBJECT-TYPE
+                    SYNTAX      IpAddress
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Message Waiting Indication server IP address. 
+                        This variable returns a 4-octet IP address for the 
+                        Message Waiting Indication servers most recently used 
+                        (all zeros if no MWI server used)."
+                    ::= { endptSIP 11 }
+endptPHNNUMOFSA  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Number of primary session appearances. This 
+                        varaible returns the number of primary session 
+                        appearances administered for the SIP endpoint."
+                    ::= { endptSIP 12 }
+endptPRESENCESRVR OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Presence server addresses. This variable 
+                        returns zero or more IP addresses, in dotted decimal 
+                        or DNS format and separated by commas, of presence 
+                        servers available for use."
+                    ::= { endptSIP 13 }
+endptPRESENCESRVRINUSE OBJECT-TYPE
+                    SYNTAX      IpAddress
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Presence server IP address. This variable 
+			returns a 4-octet IP address of the presence server 
+			most recently used (all zeros if no presence server 
+                        used)."
+                    ::= { endptSIP 14 }
+endptPRESENCETYPE  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Presence mode. This variable returns 0 if 
+                        individual presence subscriptions are done separately, 
+                        and 1 if subscription to (server-based) presence list 
+                        and watcher info is performed."
+                    ::= { endptSIP 15 }
+endptREGISTERWAIT  OBJECT-TYPE
+                    SYNTAX      Integer32
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Registration wait interval. This variable 
+                        returns the number of seconds between attempts to 
+                        re-register with the current to SIP server."
+                    ::= { endptSIP 16 }
+endptSIPDOMAIN  OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "SIP registration domain name. This variable 
+                        returns the text used in the contact header field as 
+                        part of SIP registration."
+                    ::= { endptSIP 17 }
+endptSIPMODE    OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "SIP mode. This variable returns 0 if the 
+                        endpoint operates in proxy mode, and 1 if it operates 
+                        in peer-to-peer mode."
+                    ::= { endptSIP 18 }
+endptSIPPORT    OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "TCP/UDP port used for SIP messages.  This 
+                        variable returns the current port number used for SIP 
+                        messaging via TCP or UDP. The default is 5060."
+                    ::= { endptSIP 19 }
+endptSIPPORTSECURE  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "TCP port used for SIP messages via secure link.
+                        This variable returns the current port number used for 
+                        SIP messaging via TLS over TCP. The default is 5061."
+                    ::= { endptSIP 20 }
+endptSIPSIGNAL  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      obsolete
+                    DESCRIPTION "SIP transport protocol. This variable returns
+                        an integer specifying the transport protocol for  
+                        SIP messaging: 0 for UDP, 1 for TCP, and 2 for 
+                        TLS over TCP."
+                    ::= { endptSIP 21 }
+endptSIPPROXYSRVR  OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "SIP proxy server addresses. This variable 
+                        returns zero or one IP addresses, in dotted decimal or 
+                        DNS format and separated by commas, of SIP proxy servers 
+                        available for use."
+                    ::= { endptSIP 22 }
+endptSIPPROXYSRVRINUSE  OBJECT-TYPE
+                    SYNTAX      IpAddress
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "SIP proxy server IP address. This variable 
+			returns a 4-octet IP address of the SIP proxy server 
+			most recently used (all zeros if no SIP proxy server 
+                        used)."
+                    ::= { endptSIP 23 }
+endptSIPREGISTRAR  OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "SIP registrar addresses. This variable 
+                        returns zero or more IP addresses, in dotted decimal or 
+                        DNS format and separated by commas, of SIP registrars 
+                        available for use."
+                    ::= { endptSIP 24 }
+endptSIPREGISTRARINUSE  OBJECT-TYPE
+                    SYNTAX      IpAddress
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "SIP registrar IP address. This variable 
+			returns a 4-octet IP address of the SIP registrar 
+                        most recently used (all zeros if no SIP registrar 
+                        used)."
+                    ::= { endptSIP 25 }
+endptSIPUSERACCOUNT  OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "SIP user account. This variable returns the 
+                        numeric or alphanumeric user name used for SIP 
+                        registration."
+                    ::= { endptSIP 26 }
+endptSIPUSERID  OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "SIP user ID. This variable returns the SIP 
+                        user ID used in the authorization header field in case 
+                        of re-issuing a registration request due to an 
+                        authorization challenge from SIP proxy or SIP registrar
+                        (if empty, the SIP user account is used in  
+                        authorization header field)."
+                    ::= { endptSIP 27 }
+endptSIPUSERIDENABLED  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "SIP User ID mode. This variable returns 1 
+                        if user is prompted for SIP user ID, else 0."
+                    ::= { endptSIP 28 }
+endptSNTPSRVR OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "SNTP server addresses. This variable returns  
+			zero or more IP addresses, in dotted decimal or DNS 
+                        format and separated by commas, of SNTP time servers 
+                        available for use."
+                    ::= { endptSIP 29 }
+endptSNTPSRVRUSED  OBJECT-TYPE
+                    SYNTAX      IpAddress
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "SNTP server IP address. This variable returns
+			a 4-octet IP address of the SNTP time server most 
+                        recently used (all zeroes if no SNTP server used)."
+                    ::= { endptSIP 30 }
+endptCALLFWDADDR  OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Call Forwarding address. This variable returns
+                        the URI to which calls are forwarded; up to 255 
+                        characters; not used in an Avaya SES SIP proxy 
+                        environment."
+                    ::= { endptSIP 31 }
+endptCALLFWDDELAY  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Call Forwarding delay. This variable returns 
+                        the number of times the telephone will ring before a 
+                        call is forwarded, if Call Forwarding on No Answer is 
+                        selected; not used in an Avaya SES SIP proxy 
+                        environment."
+                    ::= { endptSIP 32 }
+endptCALLFWDSTAT  OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Call Forwarding setting. This variable returns
+                        the sum of all Call Forwarding permissions.  Range is 0
+                        to 7, with 0 as the default. Not used in an Avaya SES SIP 
+                        proxy environment."
+                    ::= { endptSIP 33 }
+endptCOVERAGEADDR  OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Call Coverage Server address. This variable 
+                        returns the URI to which call coverage is sent; up to 
+                        255 character; not used in an Avaya SES SIP proxy 
+                        environment."
+                    ::= { endptSIP 34 }
+endptVUMODE       OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Visiting User mode. This variable returns 0 
+                        if the endpoint only allows registrations as 'normal'  
+                        user, 1 if the endpoint prompts the user at registration
+                        time, whether or not they like to register as 'Visiting 
+                        User', and 2 if the phone only allows registrations as 
+                        'Visiting User'. The default is 0."
+                    ::= { endptSIP 35 }
+endptVUTIMER      OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Visiting User Timer. This variable returns
+                        the idle time in seconds before the endpoint
+                        queries a user registered as 'Visiting User' 
+                        for re-registration."
+                    ::= { endptSIP 36 }
+endptSIPCONFERENCECONTINUE      OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Conference Continuation on host hangup mode.
+                        When the AVAYAENVIRONMENT variable is 0, this parameter, 
+                        this variable returns 0 when all conference parties are 
+                        dropped when the conference host drops the conference 
+                        and 1 when the conference continues when the conference 
+                        host drops the conference."
+                    ::= { endptSIP 37 }
+endptSUBSCRIBESECURITY      OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Controls the use of SIP and SIPS subscriptions.
+                        The variable returns 0 when the phone uses SIP for both 
+                        the Request URI and the Contact Header regardless of 
+                        whether SRTP is enabled.
+                        The variable returns 1 when the phone uses SIPS for 
+                        both the Request URI and the Contact Header 
+                        if SRTP is enabled.
+                        The variable returns 2 when the phone uses SIP for both 
+                        the Request URI and the Contact Header in a 
+                        SES/PPM 4.0 system, or when  the phone uses SIPS for both 
+                        the Request URI and the Contact Header if SRTP is enabled."
+                    ::= { endptSIP 38 }
+endptFASTRESPONSETIMEOUT      OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Fast Response Timer. This variable returns the
+                        value of the Fast Response Timer, in seconds."
+                    ::= { endptSIP 39 }
+endptRECOVERYREGISTERWAIT      OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Reactive Monitoring Interval. This variable returns 
+                        the value of the Reactive Monitoring Interval, in seconds.
+                        The default value is 60 seconds. The range is 10 to 36,000 seconds."
+                    ::= { endptSIP 40 }
+endptFAILBACKPOLICY      OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "A policy to control how the phone fails back to 
+                        the primary controller (proxy). 
+                        This variable returns the value of either admin or auto."
+                    ::= { endptSIP 41 }
+endptSIPREGPROXYPOLICY      OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "A policy to control how the phone treats a list of 
+                        proxies in the SIP_CONTROLLER_LIST parameter.
+                        This variable returns a value of either alternate or simultaneous."
+                    ::= { endptSIP 42 }
+endptPSTNVMNUM      OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "The string that is dialed when the user presses
+                        the Message button when the phone is not active on the
+                        primary controller (proxy)"
+                    ::= { endptSIP 43 }
+endptDISCOVERAVAYAENVIRONMENT      OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Allows the phone to discover if the active controller
+                        supports Avaya SIP AST features. The variable returns 0
+                        if the phone does not discover the feature support. It
+                        returns 1 (default) if the phone discovers feature support."
+                    ::= { endptSIP 44 }
+endptSYMMETRICRTP   OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Enforce RTP on the same port. The variable returns
+                        1 if a UDP Source Port is forced to equal to the value of 
+                        the far end port.  It returns 0 if the UDP Source Port is not checked."
+                    ::= { endptSIP 45 }
+endptEXTENDRINGTONE      OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "The string represents a list of xml files 
+                        that each represent custom ring tone information."
+                    ::= { endptSIP 46 }
+endptENABLEPPMSOURCEDSIPPROXYSRVR   OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Enables PPM as a source of SIP proxy server information.
+                        The variable returns 1 if PPM is enabled as a source of SIP proxy server information.
+                        The variable returns 0 if PPM is disabled as a source of SIP proxy server information."
+                    ::= { endptSIP 47 }
+endptINGRESSDTMFVOLLEVEL   OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "RFC 2833 Digit event volume level. The power level of the tone, 
+                        expressed in dBm0 after dropping the sign. (from RFC 2833 section 3.5 Payload Format)."
+                    ::= { endptSIP 48 }
+endptCONFTRANSONPRIMARYAPPR   OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Conference Transfer on Primary Appearance.
+                        The variable returns 1 if active.  The variable returns 0 if inactive."
+                    ::= { endptSIP 49 }
+endptAUTOSELECTANYIDLEAPPR   OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Auto Select any Idle Appearance.
+                        The variable returns 1 if active.  The variable returns 0 if inactive."
+                    ::= { endptSIP 50 }
+endptSIPCONTROLLERLIST      OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "SIP proxy server addresses. This variable returns zero or 
+                        one IP addresses, in dotted decimal or DNS format and separated by commas, 
+                        of SIP proxy servers available for use in priority order. 
+                        The variable includes controllers entered through the Craft menu, 
+                        those delivered by PPM and those included in the SIP_CONTROLLER_LIST parameter."
+                    ::= { endptSIP 51 }
+endptENABLEREMOVEPSTNACCESSPREFIX   OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Enables the removal of the PSTN access prefix.
+                        When the phone is operating with a non-AST controller and the value of the 
+                        parameter is 0, the PSTN access prefix, defined by the parameter PHNOL, 
+                        is retained in the outgoing number. If the value is 1, then the PSTN 
+                        access prefix is stripped from the outgoing number."
+                    ::= { endptSIP 52 }
+endptLOCALDIALAREACODE   OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "A flag indicating whether the user must dial area code for 
+                        calls within same area code. When the parameter is 0, the user does not 
+                        need to dial area code; when 1, the user needs to dial area code."
+                    ::= { endptSIP 53 }
+endptPHNLAC         OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION " A string representing the phone's local area code."
+                    ::= { endptSIP 54 }
+endptCONTROLLERSEARCHINTERVAL   OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "The controller search interval. The variable returns the
+                        time in seconds that the phone waits to complete the maintenance check 
+                        for monitored controllers. The default is 4 seconds. The range is 4 to 3600 seconds."
+                    ::= { endptSIP 55 }
+endptRDSINITIALRETRYATTEMPTS   OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Remote Data Source initial retry attempts. The variable returns the
+                        number of times the phone tries to download from PPM.
+                        The default is 15. The range is 1 to 30."
+                    ::= { endptSIP 56 }
+endptRDSINITIALRETRYTIME   OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Remote Data Source initial retry time. The variable returns the
+                        initial delay, in seconds, for a retry attempt to PPM.
+                        The default is 2. The range is 2 to 60 seconds."
+                    ::= { endptSIP 57 }
+endptRDSMAXRETRYTIME   OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Remote Data Source maximum retry time. The variable returns the
+                        maximum delay interval before abandoning attempts to download from PPM.
+                        The default is 600 seconds. The range is 2 to 3600 seconds."
+                    ::= { endptSIP 58 }
+endptPROXYSERVICEVERSION         OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "The contents of the ServiceVersion string from PPM."
+                    ::= { endptSIP 59 }
+endptPRIMARYPROXYENVIRONMENT   OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "The type of primary proxy. The variable returns a
+                        0 for a non-AST (3rd party) controller, a 1 for SES, and a
+                        2 for Avaya Aura(tm) Session Manager."
+                    ::= { endptSIP 60 }
+endptPHNMUTEALERTBLOCK   OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Blocks the  Mute Alert feature. The variable returns a
+                        1 (default) when the feature is blocked and a 0 when
+                        the feature is unblocked."
+                    ::= { endptSIP 61 }
+endptENFORCESIPSURI   OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Controls the enforcement of SIPS URI with SRTP. The variable returns a
+                        1 (default) when the phone accepts and uses only SIPS URI for incoming and 
+                        outgoing calls with SRTP media encryption. It returns a 0 when the phone allows 
+                        either SIP URI or SIPS URI for incoming SRTP media encryption calls and uses 
+                        only SIP URI for outgoing SRTP media encryption calls."
+                    ::= { endptSIP 62 }
+endptMSGNUM         OBJECT-TYPE
+                    SYNTAX      DisplayString
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "The dialable number used to call the messaging system when 
+                        the user presses the Message button."
+                    ::= { endptSIP 63 }
+endptREDIRECTTONE   OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Redirect (call coverage) tone. The variable returns a
+                        1 (default) when the first call coverage tone is provisioned. It
+                        returns a 2 when the second tone is provisioned, 3 when the third tone
+                        is provisioned and 4 when the fourth tone is provisioned. See the 
+                        Administrator's Guide for a description of the tones."
+                    ::= { endptSIP 64 }
+endptSDPCAPNEG   OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "Controls SDP capability negotiation. The variable returns a
+                        1 (default) when capability negotiation is enabled and a 0 when
+                        capability negotiation is disabled."
+                    ::= { endptSIP 65 }
+endptSIMULTANEOUSREGISTRATIONS   OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "The number of Session Managers that the phone simultaneously
+                        registers with. The variable returns a
+                        3 (default), 2 or 1."
+                    ::= { endptSIP 66 }
+endptNODIGITSTIMEOUT   OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "The time in seconds if no dialing digits are entered before
+                        a user hears the re-order tone. The default is 20 seconds.
+                        The range is 1 to 60 seconds."
+                    ::= { endptSIP 67 }
+endptINTERDIGITTIMEOUT   OBJECT-TYPE
+                    SYNTAX      INTEGER
+                    MAX-ACCESS  read-only
+                    STATUS      current
+                    DESCRIPTION "The time in seconds if new no dialing digits are entered before
+                        the phone sends a SIP INVITE message. The default is 5 seconds.
+                        The range is 1 to 10 seconds."
+                    ::= { endptSIP 68 }
+END

@@ -1,0 +1,111 @@
+############################################################  
+##                                                        ##
+## AVAYA 96XX IP TELEPHONE SOFTWARE UPGRADE CONFIGURATION ##
+##     SIP FIRMWARE RELEASE 2.6.17 MARCH 2017             ##
+##                                                        ##
+## This file upgrades the following telephones            ##
+## to the indicated releases:                             ##
+##    9610  - Not Supported                               ##
+##    9620  - SIP Release 2.6.12                          ##
+##    9620L - SIP Release 2.6.17                          ##
+##    9620C - SIP Release 2.6.17                          ##
+##    9630  - SIP Release 2.6.12                          ##
+##    9630G - SIP Release 2.6.17                          ##
+##    9640  - SIP Release 2.6.17                          ##
+##    9640G - SIP Release 2.6.17                          ##
+##    9650  - SIP Release 2.6.17                          ##
+##                                                        ##
+############################################################
+##                                                        ##
+## BACKUP APPLICATION VERSION NUMBERS                     ##
+##    96xx - H.323 3.0                                    ##
+##                                                        ##
+############################################################
+##                                                        ##
+## PHONE APPLICATION VERSION NUMBERS                      ##
+##    9610  - N/A                                         ##
+##    9620  - SIP Release 2.6.12                          ##
+##    9620L - SIP Release 2.6.17                          ##
+##    9620C - SIP Release 2.6.17                          ##
+##    9630  - SIP Release 2.6.12                          ##
+##    9630G - SIP Release 2.6.17                          ##
+##    9640  - SIP Release 2.6.17                          ##
+##    9640G - SIP Release 2.6.17                          ##
+##    9650  - SIP Release 2.6.17                          ##
+##                                                        ##
+############################################################
+
+
+############################################################
+##            Check backup application version            ##           
+############################################################
+
+IF $SIG SEQ 1 GOTO GETSET
+
+IF $MODEL4 SEQ 9610      goto GETSET
+
+IF $SHA2CAPABLE SEQ 1 GOTO SHA2FILES
+############################################################
+##            Download SHA-1 signature images             ##
+############################################################
+IF $MODEL  SEQ 9620D01A  goto SHA1BACKUPAPP96XXEOMS
+IF $MODEL  SEQ 9620D02L  goto SHA1BACKUPAPP96XX
+IF $MODEL  SEQ 9620D03C  goto SHA1BACKUPAPP96XX
+IF $MODEL  SEQ 9630D01A  goto SHA1BACKUPAPP96XXEOMS
+IF $MODEL  SEQ 9630GD01A goto SHA1BACKUPAPP96XX
+IF $MODEL4 SEQ 9640      goto SHA1BACKUPAPP96XX
+IF $MODEL4 SEQ 9650      goto SHA1BACKUPAPP96XX
+goto END
+
+# SHA1BACKUPAPP96XX
+IF $BOOTNAME SEQ hb96xxua3_00.bin goto SHA1PHONEAPP96XX
+IF $BOOTNAME SEQ hb96xxua3_00_SHA256.bin goto SHA1PHONEAPP96XX
+SET APPNAME hb96xxua3_00.bin
+goto GETSET
+
+# SHA1BACKUPAPP96XXEOMS
+IF $BOOTNAME SEQ hb96xxua3_00.bin goto SHA1PHONEAPP96XXEOMS
+SET APPNAME hb96xxua3_00.bin
+goto GETSET
+
+############################################################
+##            Check phone application version             ##           
+############################################################
+
+# SHA1PHONEAPP96XX
+SET APPNAME SIP96xx_2_6_17_0.bin
+goto GETSET
+
+# SHA1PHONEAPP96XXEOMS
+SET APPNAME SIP96xx_2_6_12_1.bin
+goto GETSET
+
+# SHA2FILES
+IF $MODEL  SEQ 9620D02L  goto BACKUPAPP96XX
+IF $MODEL  SEQ 9620D03C  goto BACKUPAPP96XX
+IF $MODEL  SEQ 9630GD01A goto BACKUPAPP96XX
+IF $MODEL4 SEQ 9640      goto BACKUPAPP96XX
+IF $MODEL4 SEQ 9650      goto BACKUPAPP96XX
+goto END
+
+# BACKUPAPP96XX  
+IF $BOOTNAME SEQ hb96xxua3_00.bin goto PHONEAPP96XX
+IF $BOOTNAME SEQ hb96xxua3_00_SHA256.bin goto PHONEAPP96XX
+SET APPNAME hb96xxua3_00_SHA256.bin
+goto GETSET
+
+# PHONEAPP96XX
+IF $APPNAME SEQ SIP96xx_2_6_17_0.bin goto GETSET
+IF $APPNAME SEQ SIP96xx_2_6_17_0_SHA256.bin goto GETSET
+SET APPNAME SIP96xx_2_6_17_0_SHA256.bin 
+goto GETSET
+
+############################################################
+##           Get additional configuration files           ##           
+############################################################
+
+# GETSET
+GET 46xxsettings.txt
+
+
+# END
