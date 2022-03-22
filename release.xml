@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<phone-release>
+<release-header>
+<name>MARCH 2017 Release</name>
+<date>2017-03-23</date>
+<description>
+Copyright Avaya Inc. 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 All rights reserved.
+This file describes the contents of the MARCH 2017 software distribution package for the 96XX SIP IP Telephones.
+
+The reason for the release of this software is:
+    - The R2.6.17 General Availability Version of 96xx SIP Software for 9620L, 9620C, 9630G, 9640, 9640G and 9650 Telephones.
+
+There is one firmware version with multiple language files in this distribution package. This release supports an upgrade strategy only for SIP software. Use this SIP version when a majority of 96xx telephones will use SIP software. Each of these software distribution packages contains all the files necessary to:  - convert an Avaya 9620L, 9620C, 9630G, 9640, 9640G or 9650 to SIP software.
+
+The following files are included in all packages:
+96xxupgrade.txt - This file is downloaded by the Avaya IP telephones and instructs each telephone on how to upgrade itself. This file SHOULD NOT BE EDITED. System specific parameters should be entered into the 46xxsettings.txt file, which is available for separate download at support.avaya.com.
+
+To upgrade your Avaya IP Telephones:
+  - Rename your current 96xxupgrade.txt file.
+  - Unzip the zip or executable file in the outbound file directory of your HTTP server, as appropriate.
+  - Make any adjustments to your 46xxsettings.txt file.
+  - Reset your Avaya IP Telephones.
+  </description>
+</release-header>
+
+<files-in-release>
+<file>
+<name>96xxmibDRAFT.txt</name>
+<type>mib</type>
+<version>2.6.17</version>
+<description>96xx SIP R2.6.17 MIB file </description>
+</file>
+<file>
+<name>96xxupgrade.txt</name>
+<type>config</type>
+<version>2.6.17</version>
+<description>96xx SIP R2.6.17 configuration file </description>
+</file>
+<file>
+<name>hb96xxua3_00.bin</name>
+<type>boot</type>
+<version>S3.0</version>
+<description>96xx R3.0 boot application</description>
+</file>
+<file>
+<name>hb96xxua3_00_SHA256.bin</name>
+<type>boot</type>
+<version>S3.0</version>
+<description>96xx R3.0 SHA2 signed boot application</description>
+</file>
+<file>
+<name>SIP96xx_2_6_17_0.bin</name>
+<type>app</type>
+<version>2.6.17</version>
+<description>96xx SIP R2.6.17 phone application</description>
+</file>
+<file>
+<name>SIP96xx_2_6_17_0_SHA256.bin</name>
+<type>app</type>
+<version>2.6.17</version>
+<description>96xx SIP R2.6.17 SHA2 signed phone application</description>
+</file>
+<file>
+<name>SIP96xx_2_6_12_1.bin</name>
+<type>app</type>
+<version>2.6.12</version>
+<description>96xx SIP R2.6.12 EOMS phone application</description>
+</file>
+<file>
+<name>Mlf_S96x0_Arabic.xml</name>
+<type>lang</type>
+<version>2.6.17</version>
+<description>96xx SIP R2.6.17 language support for Arabic</description>
+</file>
+<file>
+<name>Mlf_S96x0_BrazilianPortuguese.xml</name>
+<type>lang</type>
+<version>2.6.17</version>
+<description>96xx SIP R2.6.17 language support for Brazilian Portuguese</description>
+</file>
+<file>
+<name>Mlf_S96x0_CanadianFrench.xml</name>
+<type>lang</type>
+<version>2.6.17</version>
+<description>96xx SIP R2.6.17 language support for Canadian French</description>
+</file>
+<file>
+<name>Mlf_S96x0_CastilianSpanish.xml</name>
+<type>lang</type>
+<version>2.6.17</version>
+<description>96xx SIP R2.6.17 language support for Castilian Spanish</description>
+</file>
+<file>
+<name>Mlf_S96x0_Chinese.xml</name>
+<type>lang</type>
+<version>2.6.17</version>
+<description>96xx SIP R2.6.17 language support for Chinese</description>
+</file>
+<file>
+<name>Mlf_S96x0_Dutch.xml</name>
+<type>lang</type>
+<version>2.6.17</version>
+<description>96xx SIP R2.6.17 language support for Dutch</description>
+</file>
+<file>
+<name>Mlf_S96x0_English.xml</name>
+<type>lang</type>
+<version>2.6.17</version>
+<description>96xx SIP R2.6.17 language support for English</description>
+</file>
+<file>
+<name>Mlf_S96x0_German.xml</name>
+<type>lang</type>
+<version>2.6.17</version>
+<description>96xx SIP R2.6.17 language support for German</description>
+</file>
+<file>
+<name>Mlf_S96x0_Hebrew.xml</name>
+<type>lang</type>
+<version>2.6.17</version>
+<description>96xx SIP R2.6.17 language support for Hebrew</description>
+</file>
+<file>
+<name>Mlf_S96x0_Italian.xml</name>
+<type>lang</type>
+<version>2.6.17</version>
+<description>96xx SIP R2.6.17 language support for Italian</description>
+</file>
+<file>
+<name>Mlf_S96x0_Japanese.xml</name>
+<type>lang</type>
+<version>2.6.17</version>
+<description>96xx SIP R2.6.17 language support for Japanese</description>
+</file>
+<file>
+<name>Mlf_S96x0_Korean.xml</name>
+<type>lang</type>
+<version>2.6.17</version>
+<description>96xx SIP R2.6.17 language support for Korean</description>
+</file>
+<file>
+<name>Mlf_S96x0_LatinAmericanSpanish.xml</name>
+<type>lang</type>
+<version>2.6.17</version>
+<description>96xx SIP R2.6.17 language support for Latin American Spanish</description>
+</file>
+<file>
+<name>Mlf_S96x0_ParisianFrench.xml</name>
+<type>lang</type>
+<version>2.6.17</version>
+<description>96xx SIP R2.6.17 language support for Parisian French</description>
+</file>
+<file>
+<name>Mlf_S96x0_Russian.xml</name>
+<type>lang</type>
+<version>2.6.17</version>
+<description>96xx SIP R2.6.17 language support for Russian</description>
+</file>
+<file>
+<name>KoreanRT1.xml</name>
+<type>ring</type>
+<version>2.6.17</version>
+<description>96xx SIP R2.6.17 Korean Ring Tone</description>
+</file>
+<file>
+<name>KoreanRT2.xml</name>
+<type>ring</type>
+<version>2.6.17</version>
+<description>96xx SIP R2.6.17 Korean Ring Tone</description>
+</file>
+<file>
+<name>KoreanRT3.xml</name>
+<type>ring</type>
+<version>2.6.17</version>
+<description>96xx SIP R2.6.17 Korean Ring Tone</description>
+</file>
+<file>
+<name>KoreanRT4.xml</name>
+<type>ring</type>
+<version>2.6.17</version>
+<description>96xx SIP R2.6.17 Korean Ring Tone</description>
+</file>
+<file>
+<name>KoreanRT5.xml</name>
+<type>ring</type>
+<version>2.6.17</version>
+<description>96xx SIP R2.6.17 Korean Ring Tone</description>
+</file>
+<file>
+<name>KoreanRT6.xml</name>
+<type>ring</type>
+<version>2.6.17</version>
+<description>96xx SIP R2.6.17 Korean Ring Tone</description>
+</file>
+<file>
+<name>KoreanRT7.xml</name>
+<type>ring</type>
+<version>2.6.17</version>
+<description>96xx SIP R2.6.17 Korean Ring Tone</description>
+</file>
+<file>
+<name>KoreanRT8.xml</name>
+<type>ring</type>
+<version>2.6.17</version>
+<description>96xx SIP R2.6.17 Korean Ring Tone</description>
+</file>
+<file>
+<name>av_csca_pem_2032.txt</name>
+<type>cert</type>
+<version>2.6.17</version>
+<description>96xx SIP R2.6.17 Certificate</description>
+</file>
+<file>
+<name>av_prca_pem_2033.txt</name>
+<type>cert</type>
+<version>2.6.17</version>
+<description>96xx SIP R2.6.17 Certificate</description>
+</file>
+<file>
+<name>av_sipca_pem_2027.txt</name>
+<type>cert</type>
+<version>2.6.17</version>
+<description>96xx SIP R2.6.17 Certificate</description>
+</file>
+</files-in-release>
+<phones>
+<phone>
+<model>9620</model>
+<files>
+<file-name>96xxmibDRAFT.txt</file-name>
+<file-name>96xxupgrade.txt</file-name>
+<file-name>hb96xxua3_00.bin</file-name>
+<file-name>SIP96xx_2_6_12_1.bin</file-name>
+<file-name>Mlf_S96x0_Arabic.xml</file-name>
+<file-name>Mlf_S96x0_BrazilianPortuguese.xml</file-name>
+<file-name>Mlf_S96x0_CanadianFrench.xml</file-name>
+<file-name>Mlf_S96x0_CastilianSpanish.xml</file-name>
+<file-name>Mlf_S96x0_Chinese.xml</file-name>
+<file-name>Mlf_S96x0_Dutch.xml</file-name>
+<file-name>Mlf_S96x0_English.xml</file-name>
+<file-name>Mlf_S96x0_German.xml</file-name>
+<file-name>Mlf_S96x0_Hebrew.xml</file-name>
+<file-name>Mlf_S96x0_Italian.xml</file-name>
+<file-name>Mlf_S96x0_Japanese.xml</file-name>
+<file-name>Mlf_S96x0_Korean.xml</file-name>
+<file-name>Mlf_S96x0_LatinAmericanSpanish.xml</file-name>
+<file-name>Mlf_S96x0_ParisianFrench.xml</file-name>
+<file-name>Mlf_S96x0_Russian.xml</file-name>
+<file-name>KoreanRT1.xml</file-name>
+<file-name>KoreanRT2.xml</file-name>
+<file-name>KoreanRT3.xml</file-name>
+<file-name>KoreanRT4.xml</file-name>
+<file-name>KoreanRT5.xml</file-name>
+<file-name>KoreanRT6.xml</file-name>
+<file-name>KoreanRT7.xml</file-name>
+<file-name>KoreanRT8.xml</file-name>
+<file-name>av_csca_pem_2032.txt</file-name>
+<file-name>av_prca_pem_2033.txt</file-name>
+<file-name>av_sipca_pem_2027.txt</file-name>
+</files>
+</phone>
+<phone>
+<model>9620L</model>
+<files>
+<file-name>96xxmibDRAFT.txt</file-name>
+<file-name>96xxupgrade.txt</file-name>
+<file-name>hb96xxua3_00.bin</file-name>
+<file-name>hb96xxua3_00_SHA256.bin</file-name>
+<file-name>SIP96xx_2_6_17_0.bin</file-name>
+<file-name>SIP96xx_2_6_17_0_SHA256.bin</file-name>
+<file-name>Mlf_S96x0_Arabic.xml</file-name>
+<file-name>Mlf_S96x0_BrazilianPortuguese.xml</file-name>
+<file-name>Mlf_S96x0_CanadianFrench.xml</file-name>
+<file-name>Mlf_S96x0_CastilianSpanish.xml</file-name>
+<file-name>Mlf_S96x0_Chinese.xml</file-name>
+<file-name>Mlf_S96x0_Dutch.xml</file-name>
+<file-name>Mlf_S96x0_English.xml</file-name>
+<file-name>Mlf_S96x0_German.xml</file-name>
+<file-name>Mlf_S96x0_Hebrew.xml</file-name>
+<file-name>Mlf_S96x0_Italian.xml</file-name>
+<file-name>Mlf_S96x0_Japanese.xml</file-name>
+<file-name>Mlf_S96x0_Korean.xml</file-name>
+<file-name>Mlf_S96x0_LatinAmericanSpanish.xml</file-name>
+<file-name>Mlf_S96x0_ParisianFrench.xml</file-name>
+<file-name>Mlf_S96x0_Russian.xml</file-name>
+<file-name>KoreanRT1.xml</file-name>
+<file-name>KoreanRT2.xml</file-name>
+<file-name>KoreanRT3.xml</file-name>
+<file-name>KoreanRT4.xml</file-name>
+<file-name>KoreanRT5.xml</file-name>
+<file-name>KoreanRT6.xml</file-name>
+<file-name>KoreanRT7.xml</file-name>
+<file-name>KoreanRT8.xml</file-name>
+<file-name>av_csca_pem_2032.txt</file-name>
+<file-name>av_prca_pem_2033.txt</file-name>
+<file-name>av_sipca_pem_2027.txt</file-name>
+</files>
+</phone>
+<phone>
+<model>9620C</model>
+<files>
+<file-name>96xxmibDRAFT.txt</file-name>
+<file-name>96xxupgrade.txt</file-name>
+<file-name>hb96xxua3_00.bin</file-name>
+<file-name>hb96xxua3_00_SHA256.bin</file-name>
+<file-name>SIP96xx_2_6_17_0.bin</file-name>
+<file-name>SIP96xx_2_6_17_0_SHA256.bin</file-name>
+<file-name>Mlf_S96x0_Arabic.xml</file-name>
+<file-name>Mlf_S96x0_BrazilianPortuguese.xml</file-name>
+<file-name>Mlf_S96x0_CanadianFrench.xml</file-name>
+<file-name>Mlf_S96x0_CastilianSpanish.xml</file-name>
+<file-name>Mlf_S96x0_Chinese.xml</file-name>
+<file-name>Mlf_S96x0_Dutch.xml</file-name>
+<file-name>Mlf_S96x0_English.xml</file-name>
+<file-name>Mlf_S96x0_German.xml</file-name>
+<file-name>Mlf_S96x0_Hebrew.xml</file-name>
+<file-name>Mlf_S96x0_Italian.xml</file-name>
+<file-name>Mlf_S96x0_Japanese.xml</file-name>
+<file-name>Mlf_S96x0_Korean.xml</file-name>
+<file-name>Mlf_S96x0_LatinAmericanSpanish.xml</file-name>
+<file-name>Mlf_S96x0_ParisianFrench.xml</file-name>
+<file-name>Mlf_S96x0_Russian.xml</file-name>
+<file-name>KoreanRT1.xml</file-name>
+<file-name>KoreanRT2.xml</file-name>
+<file-name>KoreanRT3.xml</file-name>
+<file-name>KoreanRT4.xml</file-name>
+<file-name>KoreanRT5.xml</file-name>
+<file-name>KoreanRT6.xml</file-name>
+<file-name>KoreanRT7.xml</file-name>
+<file-name>KoreanRT8.xml</file-name>
+<file-name>av_csca_pem_2032.txt</file-name>
+<file-name>av_prca_pem_2033.txt</file-name>
+<file-name>av_sipca_pem_2027.txt</file-name>
+</files>
+</phone>
+<phone>
+<model>9630</model>
+<files>
+<file-name>96xxmibDRAFT.txt</file-name>
+<file-name>96xxupgrade.txt</file-name>
+<file-name>hb96xxua3_00.bin</file-name>
+<file-name>SIP96xx_2_6_12_1.bin</file-name>
+<file-name>Mlf_S96x0_Arabic.xml</file-name>
+<file-name>Mlf_S96x0_BrazilianPortuguese.xml</file-name>
+<file-name>Mlf_S96x0_CanadianFrench.xml</file-name>
+<file-name>Mlf_S96x0_CastilianSpanish.xml</file-name>
+<file-name>Mlf_S96x0_Chinese.xml</file-name>
+<file-name>Mlf_S96x0_Dutch.xml</file-name>
+<file-name>Mlf_S96x0_English.xml</file-name>
+<file-name>Mlf_S96x0_German.xml</file-name>
+<file-name>Mlf_S96x0_Hebrew.xml</file-name>
+<file-name>Mlf_S96x0_Italian.xml</file-name>
+<file-name>Mlf_S96x0_Japanese.xml</file-name>
+<file-name>Mlf_S96x0_Korean.xml</file-name>
+<file-name>Mlf_S96x0_LatinAmericanSpanish.xml</file-name>
+<file-name>Mlf_S96x0_ParisianFrench.xml</file-name>
+<file-name>Mlf_S96x0_Russian.xml</file-name>
+<file-name>KoreanRT1.xml</file-name>
+<file-name>KoreanRT2.xml</file-name>
+<file-name>KoreanRT3.xml</file-name>
+<file-name>KoreanRT4.xml</file-name>
+<file-name>KoreanRT5.xml</file-name>
+<file-name>KoreanRT6.xml</file-name>
+<file-name>KoreanRT7.xml</file-name>
+<file-name>KoreanRT8.xml</file-name>
+<file-name>av_csca_pem_2032.txt</file-name>
+<file-name>av_prca_pem_2033.txt</file-name>
+<file-name>av_sipca_pem_2027.txt</file-name>
+</files>
+</phone>
+<phone>
+<model>9630G</model>
+<files>
+<file-name>96xxmibDRAFT.txt</file-name>
+<file-name>96xxupgrade.txt</file-name>
+<file-name>hb96xxua3_00.bin</file-name>
+<file-name>hb96xxua3_00_SHA256.bin</file-name>
+<file-name>SIP96xx_2_6_17_0.bin</file-name>
+<file-name>SIP96xx_2_6_17_0_SHA256.bin</file-name>
+<file-name>Mlf_S96x0_Arabic.xml</file-name>
+<file-name>Mlf_S96x0_BrazilianPortuguese.xml</file-name>
+<file-name>Mlf_S96x0_CanadianFrench.xml</file-name>
+<file-name>Mlf_S96x0_CastilianSpanish.xml</file-name>
+<file-name>Mlf_S96x0_Chinese.xml</file-name>
+<file-name>Mlf_S96x0_Dutch.xml</file-name>
+<file-name>Mlf_S96x0_English.xml</file-name>
+<file-name>Mlf_S96x0_German.xml</file-name>
+<file-name>Mlf_S96x0_Hebrew.xml</file-name>
+<file-name>Mlf_S96x0_Italian.xml</file-name>
+<file-name>Mlf_S96x0_Japanese.xml</file-name>
+<file-name>Mlf_S96x0_Korean.xml</file-name>
+<file-name>Mlf_S96x0_LatinAmericanSpanish.xml</file-name>
+<file-name>Mlf_S96x0_ParisianFrench.xml</file-name>
+<file-name>Mlf_S96x0_Russian.xml</file-name>
+<file-name>KoreanRT1.xml</file-name>
+<file-name>KoreanRT2.xml</file-name>
+<file-name>KoreanRT3.xml</file-name>
+<file-name>KoreanRT4.xml</file-name>
+<file-name>KoreanRT5.xml</file-name>
+<file-name>KoreanRT6.xml</file-name>
+<file-name>KoreanRT7.xml</file-name>
+<file-name>KoreanRT8.xml</file-name>
+<file-name>av_csca_pem_2032.txt</file-name>
+<file-name>av_prca_pem_2033.txt</file-name>
+<file-name>av_sipca_pem_2027.txt</file-name>
+</files>
+</phone>
+<phone>
+<model>9640</model>
+<files>
+<file-name>96xxmibDRAFT.txt</file-name>
+<file-name>96xxupgrade.txt</file-name>
+<file-name>hb96xxua3_00.bin</file-name>
+<file-name>hb96xxua3_00_SHA256.bin</file-name>
+<file-name>SIP96xx_2_6_17_0.bin</file-name>
+<file-name>SIP96xx_2_6_17_0_SHA256.bin</file-name>
+<file-name>Mlf_S96x0_Arabic.xml</file-name>
+<file-name>Mlf_S96x0_BrazilianPortuguese.xml</file-name>
+<file-name>Mlf_S96x0_CanadianFrench.xml</file-name>
+<file-name>Mlf_S96x0_CastilianSpanish.xml</file-name>
+<file-name>Mlf_S96x0_Chinese.xml</file-name>
+<file-name>Mlf_S96x0_Dutch.xml</file-name>
+<file-name>Mlf_S96x0_English.xml</file-name>
+<file-name>Mlf_S96x0_German.xml</file-name>
+<file-name>Mlf_S96x0_Hebrew.xml</file-name>
+<file-name>Mlf_S96x0_Italian.xml</file-name>
+<file-name>Mlf_S96x0_Japanese.xml</file-name>
+<file-name>Mlf_S96x0_Korean.xml</file-name>
+<file-name>Mlf_S96x0_LatinAmericanSpanish.xml</file-name>
+<file-name>Mlf_S96x0_ParisianFrench.xml</file-name>
+<file-name>Mlf_S96x0_Russian.xml</file-name>
+<file-name>KoreanRT1.xml</file-name>
+<file-name>KoreanRT2.xml</file-name>
+<file-name>KoreanRT3.xml</file-name>
+<file-name>KoreanRT4.xml</file-name>
+<file-name>KoreanRT5.xml</file-name>
+<file-name>KoreanRT6.xml</file-name>
+<file-name>KoreanRT7.xml</file-name>
+<file-name>KoreanRT8.xml</file-name>
+<file-name>av_csca_pem_2032.txt</file-name>
+<file-name>av_prca_pem_2033.txt</file-name>
+<file-name>av_sipca_pem_2027.txt</file-name>
+</files>
+</phone>
+<phone>
+<model>9650</model>
+<files>
+<file-name>96xxmibDRAFT.txt</file-name>
+<file-name>96xxupgrade.txt</file-name>
+<file-name>hb96xxua3_00.bin</file-name>
+<file-name>hb96xxua3_00_SHA256.bin</file-name>
+<file-name>SIP96xx_2_6_17_0.bin</file-name>
+<file-name>SIP96xx_2_6_17_0_SHA256.bin</file-name>
+<file-name>Mlf_S96x0_Arabic.xml</file-name>
+<file-name>Mlf_S96x0_BrazilianPortuguese.xml</file-name>
+<file-name>Mlf_S96x0_CanadianFrench.xml</file-name>
+<file-name>Mlf_S96x0_CastilianSpanish.xml</file-name>
+<file-name>Mlf_S96x0_Chinese.xml</file-name>
+<file-name>Mlf_S96x0_Dutch.xml</file-name>
+<file-name>Mlf_S96x0_English.xml</file-name>
+<file-name>Mlf_S96x0_German.xml</file-name>
+<file-name>Mlf_S96x0_Hebrew.xml</file-name>
+<file-name>Mlf_S96x0_Italian.xml</file-name>
+<file-name>Mlf_S96x0_Japanese.xml</file-name>
+<file-name>Mlf_S96x0_Korean.xml</file-name>
+<file-name>Mlf_S96x0_LatinAmericanSpanish.xml</file-name>
+<file-name>Mlf_S96x0_ParisianFrench.xml</file-name>
+<file-name>Mlf_S96x0_Russian.xml</file-name>
+<file-name>KoreanRT1.xml</file-name>
+<file-name>KoreanRT2.xml</file-name>
+<file-name>KoreanRT3.xml</file-name>
+<file-name>KoreanRT4.xml</file-name>
+<file-name>KoreanRT5.xml</file-name>
+<file-name>KoreanRT6.xml</file-name>
+<file-name>KoreanRT7.xml</file-name>
+<file-name>KoreanRT8.xml</file-name>
+<file-name>av_csca_pem_2032.txt</file-name>
+<file-name>av_prca_pem_2033.txt</file-name>
+<file-name>av_sipca_pem_2027.txt</file-name>
+</files>
+</phone>
+</phones>
+</phone-release>
