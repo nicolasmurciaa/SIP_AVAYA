@@ -21,3 +21,8 @@ Creado con el objetivo de descargar los archivos y los requerimientos necesarios
 ### Lenguajes:
 
 Dentro de Signatures, está el directorio a de idiomas con todos los idiomas correspondientes, si se requiere un idioma en especifico se debe sacar del direcotorio idiomas y colocar en sigantures los dos archivos de idiomas. Por default están los idiomas Inglés y Español.
+
+
+### Nota:
+
+Debes buscar o crear el archivos 46x :)
