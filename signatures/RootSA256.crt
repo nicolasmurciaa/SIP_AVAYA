@@ -1,0 +1,100 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 101 (0x65)
+    Signature Algorithm: sha1WithRSAEncryption
+        Issuer: C=US, O=Avaya Inc., OU=Avaya Product PKI, CN=Avaya Product Root CA
+        Validity
+            Not Before: May 24 12:25:37 2013 GMT
+            Not After : May 22 12:25:37 2023 GMT
+        Subject: C=US, O=Avaya Inc., OU=Avaya Product PKI, CN=Avaya File Signing Authority 2013
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:bd:5c:ed:40:01:fd:9c:37:8a:0b:55:44:0e:d4:
+                    21:a2:ce:1a:f1:f4:48:44:0c:14:1a:2a:1b:fd:8e:
+                    94:4b:84:31:9a:7d:9e:b8:56:5f:58:61:34:63:4c:
+                    e0:19:e1:3f:47:56:2c:e1:bb:67:30:4d:93:7b:be:
+                    a3:93:be:e5:5b:16:eb:ee:a1:de:f3:27:05:22:6f:
+                    81:6f:de:bc:18:21:68:29:bd:0c:c3:91:35:0a:42:
+                    7e:92:b6:a8:a4:57:fc:be:fb:6f:ce:ae:fe:18:96:
+                    be:f6:24:7b:20:3b:68:7f:ca:d9:5c:15:5a:39:ba:
+                    17:e6:d9:95:38:0f:11:05:d4:4c:6e:65:fc:ce:e1:
+                    61:22:52:d7:cc:6a:79:8f:74:83:81:64:75:14:f6:
+                    e4:2d:48:f1:b6:76:03:80:1e:40:d3:cb:50:37:d1:
+                    55:28:7e:cb:44:f0:94:7d:74:6c:9d:27:08:f1:55:
+                    7c:28:6b:68:3a:64:95:ca:23:3a:73:ad:8d:9d:bf:
+                    c7:52:f7:a2:9c:b0:86:38:a5:4f:d3:da:fb:40:ab:
+                    93:f7:4a:44:49:a7:e1:5c:f2:0b:a2:1a:56:cc:52:
+                    52:12:5d:7c:da:ee:cc:91:d9:65:53:01:5f:c8:72:
+                    53:f2:0c:36:02:f7:ea:7b:f5:b3:df:91:85:f1:6e:
+                    55:d9
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Subject Key Identifier: 
+                3A:E8:F7:43:09:25:8C:86:2B:50:D5:CC:CE:35:97:96:BD:3F:53:CB
+            X509v3 Authority Key Identifier: 
+                keyid:C2:9A:B6:F1:73:21:82:26:6D:13:B0:FE:FE:51:F6:5E:9B:DC:35:7B
+                DirName:/C=US/O=Avaya Inc./OU=Avaya Product PKI/CN=Avaya Product Root CA
+                serial:00
+
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            X509v3 Key Usage: 
+                Digital Signature
+            X509v3 Extended Key Usage: 
+                Code Signing
+            X509v3 Certificate Policies: 
+                Policy: avayaCPS
+                  CPS: https://www.avaya.com/pki/CPS;
+                  User Notice:
+                    Organization: Avaya Product CA
+                    Number: 1
+                    Explicit Text: Avaya Inc. Limited Liability PKI CA.  Please visit http://www.avaya.com/pki/CPS for details.;
+
+    Signature Algorithm: sha1WithRSAEncryption
+         e7:57:b7:51:40:63:e1:39:59:39:66:52:30:95:13:39:53:13:
+         f6:31:5e:bd:a5:f7:e6:9e:4e:df:16:f6:fe:bc:4f:44:a4:ed:
+         c3:3c:28:a1:7a:c0:b9:87:86:46:cc:df:77:9d:b7:cd:b8:b7:
+         6c:ff:fd:c5:c0:43:dd:3a:bd:01:13:a8:21:c5:7d:98:21:60:
+         42:28:78:ed:04:b1:0c:fa:bd:89:59:7e:6a:72:43:65:92:81:
+         ea:89:8e:f3:35:f5:55:f9:32:a0:d6:e0:45:11:01:54:b3:86:
+         79:12:16:9f:dd:c7:ad:db:2e:ba:25:8c:21:42:a9:40:ef:8c:
+         d5:16:a1:4b:03:02:42:db:21:e4:5d:97:68:79:b9:fc:f9:fb:
+         a8:32:9b:6d:a9:c1:df:4b:c1:91:65:98:06:30:0b:69:5b:20:
+         92:c0:59:53:ee:1e:bf:83:4a:d5:0e:26:d2:0c:61:18:83:46:
+         01:3f:6c:32:c7:77:54:2f:90:c2:41:46:b2:22:02:eb:63:73:
+         86:42:4b:86:5e:47:ea:d4:5a:52:28:3f:8b:77:51:76:e5:b5:
+         4b:f8:03:16:d2:22:15:1a:c3:d4:c9:12:60:ad:2d:0d:63:d2:
+         40:85:d6:ca:ba:7a:bb:f4:2b:40:b1:38:b0:5a:e3:9d:1c:6f:
+         72:b7:82:63
+-----BEGIN CERTIFICATE-----
+MIIE8jCCA9qgAwIBAgIBZTANBgkqhkiG9w0BAQUFADBeMQswCQYDVQQGEwJVUzET
+MBEGA1UEChMKQXZheWEgSW5jLjEaMBgGA1UECxMRQXZheWEgUHJvZHVjdCBQS0kx
+HjAcBgNVBAMTFUF2YXlhIFByb2R1Y3QgUm9vdCBDQTAeFw0xMzA1MjQxMjI1Mzda
+Fw0yMzA1MjIxMjI1MzdaMGoxCzAJBgNVBAYTAlVTMRMwEQYDVQQKDApBdmF5YSBJ
+bmMuMRowGAYDVQQLDBFBdmF5YSBQcm9kdWN0IFBLSTEqMCgGA1UEAwwhQXZheWEg
+RmlsZSBTaWduaW5nIEF1dGhvcml0eSAyMDEzMIIBIjANBgkqhkiG9w0BAQEFAAOC
+AQ8AMIIBCgKCAQEAvVztQAH9nDeKC1VEDtQhos4a8fRIRAwUGiob/Y6US4Qxmn2e
+uFZfWGE0Y0zgGeE/R1Ys4btnME2Te76jk77lWxbr7qHe8ycFIm+Bb968GCFoKb0M
+w5E1CkJ+kraopFf8vvtvzq7+GJa+9iR7IDtof8rZXBVaOboX5tmVOA8RBdRMbmX8
+zuFhIlLXzGp5j3SDgWR1FPbkLUjxtnYDgB5A08tQN9FVKH7LRPCUfXRsnScI8VV8
+KGtoOmSVyiM6c62Nnb/HUveinLCGOKVP09r7QKuT90pESafhXPILohpWzFJSEl18
+2u7MkdllUwFfyHJT8gw2Avfqe/Wz35GF8W5V2QIDAQABo4IBrTCCAakwHQYDVR0O
+BBYEFDro90MJJYyGK1DVzM41l5a9P1PLMIGGBgNVHSMEfzB9gBTCmrbxcyGCJm0T
+sP7+UfZem9w1e6FipGAwXjELMAkGA1UEBhMCVVMxEzARBgNVBAoTCkF2YXlhIElu
+Yy4xGjAYBgNVBAsTEUF2YXlhIFByb2R1Y3QgUEtJMR4wHAYDVQQDExVBdmF5YSBQ
+cm9kdWN0IFJvb3QgQ0GCAQAwCQYDVR0TBAIwADALBgNVHQ8EBAMCB4AwEwYDVR0l
+BAwwCgYIKwYBBQUHAwMwgdEGA1UdIASByTCBxjCBwwYLYIZIAYb8CwcBAQEwgbMw
+KgYIKwYBBQUHAgEWHmh0dHBzOi8vd3d3LmF2YXlhLmNvbS9wa2kvQ1BTOzCBhAYI
+KwYBBQUHAgIweDAXFhBBdmF5YSBQcm9kdWN0IENBMAMCAQEaXUF2YXlhIEluYy4g
+TGltaXRlZCBMaWFiaWxpdHkgUEtJIENBLiAgUGxlYXNlIHZpc2l0IGh0dHA6Ly93
+d3cuYXZheWEuY29tL3BraS9DUFMgZm9yIGRldGFpbHMuOzANBgkqhkiG9w0BAQUF
+AAOCAQEA51e3UUBj4TlZOWZSMJUTOVMT9jFevaX35p5O3xb2/rxPRKTtwzwooXrA
+uYeGRszfd523zbi3bP/9xcBD3Tq9AROoIcV9mCFgQih47QSxDPq9iVl+anJDZZKB
+6omO8zX1VfkyoNbgRREBVLOGeRIWn93HrdsuuiWMIUKpQO+M1RahSwMCQtsh5F2X
+aHm5/Pn7qDKbbanB30vBkWWYBjALaVsgksBZU+4ev4NK1Q4m0gxhGINGAT9sMsd3
+VC+QwkFGsiIC62NzhkJLhl5H6tRaUig/i3dRduW1S/gDFtIiFRrD1MkSYK0tDWPS
+QIXWyrp6u/QrQLE4sFrjnRxvcreCYw==
+-----END CERTIFICATE-----
